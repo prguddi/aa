@@ -1,0 +1,1720 @@
+***************************************slip1*****************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP script for the following:Design a form to accept a string.Write a 
+function to count the total number of vowels(a,e,i,o,u)from the string.Show the occurrences of each 
+vowel from the string.Check whether the given string is a palindrome or not,without using built-in 
+function.(Use radio buttons and the concept of function.Use ‘include’ construct or require stmt.
+*************************************************************************************
+Slip1.html: 
+<html> 
+<body> 
+<form method="GET" action="slip1.php"> 
+Enter the String : <input type="text" name="inputStr"><br> 
+<input type="submit" name="Submit"> 
+</form> 
+</body> 
+</html> 
+Slip1.php: 
+<?php 
+$string = $_GET['inputStr']; 
+$vowels = array("a"=>0,"e"=>0,"i"=>0,"o"=>0,"u"=>0); 
+for($i=0; $i<strlen($string); $i++) { 
+if(strtolower($string[$i]) == 'a') { 
+++$cnt; 
+++$vowels['a']; 
+} 
+if(strtolower($string[$i]) == 'e') { 
+++$cnt; 
+++$vowels['e']; 
+} 
+if(strtolower($string[$i]) == 'i') { 
+++$cnt; 
+++$vowels['i']; 
+} 
+if(strtolower($string[$i]) == 'o') { 
+++$cnt; 
+++$vowels['o']; 
+} 
+if(strtolower($string[$i]) == 'u') { 
+++$cnt; 
+++$vowels['u']; 
+} 
+} 
+echo "<h1>Total number of vowels found : ".$cnt."<h1>"; 
+echo "Occurence of 'a' : ".$vowels['a']."<br>"; 
+echo "Occurence of 'e' : ".$vowels['e']."<br>"; 
+echo "Occurence of 'i' : ".$vowels['i']."<br>"; 
+echo "Occurence of 'o' : ".$vowels['o']."<br>"; 
+echo "Occurence of 'u' : ".$vowels['u']."<br>"; 
+$str=strrev($string); 
+$a=strlen($string); 
+$f=0; 
+for($j=0;$j<$a;$j++) 
+{ 
+if($str[$j]==$string[$j]) 
+{ 
+$f=0; 
+} 
+else 
+{ 
+$f=1; 
+break; 
+} 
+} 
+if($f==0) 
+{ 
+echo"string is palindrome"; 
+} 
+else 
+{ 
+echo"string is not palindrome"; 
+} 
+?> 
+************************************OUTPUT*****************************************
+Enter the String :
+Submit
+Total number of vowels found : 5
+Occurence of 'a' : 1
+Occurence of 'e' : 1
+Occurence of 'i' : 1
+Occurence of 'o' : 1
+Occurence of 'u' : 1
+string is not palindrome
+
+
+
+
+
+*************************************************************************************
+************************************slip2********************************************* 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP script for the following:Design a form to accept two strings from the 
+user.Find the first occurrence and the last occurrence of the small string in the large string.Also count 
+the total number of occurrences of small string in the large string.Provide a text box to accept a 
+string,which will replace the small string in the large string.(Use built in functions) 
+*************************************************************************************
+Slip2.html: 
+<html> 
+<head><title>php program</title></head> 
+<body bgcolor='#f1284e' > 
+<form action='slip2.php' method='post'> 
+<pre> 
+Enter 1'st string :<input type='text' name='str1'><br> 
+Enter 2'nd string :<input type='text' name='str2'><br> 
+Enter string to replace small string :<input type='text' name='str'><br> 
+<input type='radio' name='ch' value=1>first and last occurence<br> 
+<input type='radio' name='ch' value=2>total occurence<br> 
+<input type='radio' name='ch' value=3>replace<br> 
+<input type=submit value= 0k ><input type=reset value=cancel></h2> 
+</pre> 
+</form> 
+</body> 
+</html> 
+Slip2.php: 
+<?php 
+$str1=$_POST['str1']; 
+$str2=$_POST['str2']; 
+$str=$_POST['str']; 
+$ch=$_POST['ch']; 
+$oc=0; 
+echo"<br>string1:: $str1<br>string2:: $str2<br>string for replace:: $str</b><br>"; 
+if($str1>$str2) 
+{ 
+switch($ch) 
+{ case 1: echo"<br>First occ is at possition :";echo strpos($str1,$str2); 
+echo"<br>Last occ is at possition :";echo strrpos($str1,$str2); 
+break; 
+case 2:$oc=substr_count($str1,$str2); 
+if($oc==0) 
+echo"<br>string '$str2' not present in string '$str1'<br>"; 
+else 
+echo"<br>sub string '$str2' present $oc times in string '$str1'<br>"; 
+break; 
+case 3: 
+$str3=str_replace($str2,$str,$str1); 
+echo"<br>After relacing string is::$str3"; 
+break; 
+} } 
+else 
+{ 
+switch($ch) 
+{ case 1:echo"<br>First occ is at position :";echo strpos($str2,$str1); 
+echo"<br>Last occ is at possition :";echo strrpos($str2,$str1); 
+break; 
+case 2:$oc=substr_count($str2,$str1); 
+if($oc==0) 
+echo"<br>string '$str1' not present in string '$str2'.<br>"; 
+else 
+echo"<br>sub string '$str1' present $oc times in string '$str2'.<br>"; 
+break; 
+case 3: 
+$str3=str_replace($str1,$str,$str2); 
+echo"<br>After relacing string::'$str3'."; 
+break; 
+} } 
+?> 
+<h1><a href='slip2.html'>go back</a></h1> 
+****************************************OUTPUT*************************************
+Enter 1'st string :
+Enter 2'nd string :
+Enter string to replace small string :
+first and last occurence
+total occurence
+replace
+0k cancel
+string1::
+string2::
+string for replace::
+First occ is at position :0
+Last occ is at possition :0
+go back
+string1:: sybba
+string2:: bba
+string for replace:: bca
+sub string 'bba' present 1 times in string 'sybba'
+go back
+string1:: sybba
+string2:: bba
+string for replace:: bca
+After relacing string is::sybca
+go back
+
+
+
+*************************************************************************************
+****************************************SLIP3****************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP script for the following:Design a form to accept two numbers from the 
+user.Give options to choose the arithmetic operation(use radio buttons).Display the result on the next 
+form.(Use the concept of function and default parameters.Use‘include’construct or require stmt). 
+*************************************************************************************
+Slip3.html: 
+<html> 
+<body bgcolor=pink > 
+<form action="slip3.php" method= "GET" > 
+Enter first number : <input type=text name=a ><br> 
+Enter second number: <input type=text name=b ><br 
+Operation:: 
+<input type=radio name=c value=1>Addition.<br> 
+<input type=radio name=c value=2>Subtraction.<br> 
+<input type=radio name=c value=3>Multiplication.<br> 
+<input type=radio name=c value=4>Division.<br> 
+<input type=submit value=ok> <input type=reset value=clear> 
+</form> 
+</body> 
+</html> 
+Slip3.php: 
+<?php 
+$n1 = $_GET['a']; 
+$n2 = $_GET['b']; 
+$ch = $_GET['c']; 
+if($ch==1) 
+{ 
+$c = $n1 + $n2; 
+echo"addition is: $c"; 
+} 
+else if($ch==2) 
+{ 
+$c = $n1 - $n2; 
+echo"subtraction is: $c"; 
+} 
+else if($ch==3) 
+{ 
+$c = $n1 * $n2; 
+echo"multiplication is: $c"; 
+} 
+else if($ch==4) 
+{ 
+$c = $n1 / $n2; 
+echo"Division is: $c"; 
+} ?> 
+**************************************OUTPUT***************************************
+Enter first number :
+Enter second number:
+Addition.
+Subtraction.
+Multiplication.
+Division.
+ok clear
+Addition is:32
+subtraction is: 10
+multiplication is: 264
+Division is: 1.8333333333333
+
+
+
+
+
+
+
+
+
+*************************************************************************************
+***************************************SLIP4*****************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP script for the following:Design a form to accept two strings from the 
+user.Find whether the small string appears at the start of the large string. Provide a textbox to accept 
+the string that will replace all occurrences of small string presentin the large string. Also split the large 
+string into separate words. (Use regular expressions) 
+*************************************************************************************
+Slip4.html: 
+<html> 
+<body> 
+<form action='slip4.php' method=post> 
+<pre> 
+Enter first string :<input type='text' name='str1'><br> 
+Enter second string :<input type='text' name='str2'><br> 
+Enter string for replace:<input type='text' name='str3'><br></h2> 
+<input type='radio' name="ch" value=1>Occurence. 
+<input type='radio' name="ch" value=2>Replace. 
+<input type='radio' name="ch" value=3>split. 
+<input type=submit value=ok> <input type=reset value=cancel> 
+</pre> 
+</form> 
+</body> 
+</html> 
+Slip4.php: 
+<?php 
+$str1=$_POST['str1']; 
+$str2=$_POST['str2']; 
+$str3=$_POST['str3']; 
+$ch=$_POST['ch']; 
+echo"First string=$str1.<br>"; 
+echo"Second String=$str2.<br>"; 
+echo"String for replace=$str3.<br>"; 
+if(strlen($str1)>strlen($str2)) 
+{ 
+switch($ch) 
+{ 
+case 1: $pos=strpos($str1,$str2); 
+if($pos!=0) 
+echo"String '$str2' Not present at the start of '$str1'.<br>"; 
+else 
+echo"String '$str2' Present at the strat of '$str1'.<br>"; 
+break; 
+case 2: 
+$str4=str_replace($str2,$str3,$str1); 
+printf("\nAfter replacing string::"); 
+echo $str4;
+break; 
+case 3: $s=preg_split("//",$str1); 
+foreach($s as $v) echo "\t$v <br>"; 
+break; 
+} 
+} 
+else 
+{ 
+switch($ch) 
+{ 
+case 1:$pos=strpos($str2,$str1); 
+if($pos!=0) 
+echo"String '$str1' Not present at the start of '$str2'.<br>"; 
+else 
+echo"String '$str1' Present at the start of '$str2'.<br>"; 
+break; 
+case 2: $str4=str_replace($str1,$str3,$str2); 
+echo "After replacing string::$str4<br>"; 
+break; 
+case 3: 
+echo"After splitting the string::<br>"; 
+$s=preg_split("//",$str2); 
+foreach($s as $v) echo "\t$v <br>"; 
+} } 
+?> 
+***************************************OUTPUT**************************************
+Enter first string :
+Enter second string :
+Enter string for replace:
+Occurence. 
+Replace. 
+split. 
+ok cancel
+First string=sybba.
+Second String=bba.
+String for replace=bca.
+String 'bba' Not present at the start of 'sybba'.
+First string=sybba.
+Second String=bba.
+String for replace=bca.
+After replacing string::sybca
+First string=sybba.
+Second String=bba.
+String for replace=bca.
+s
+y
+b
+b
+a
+
+
+
+
+
+
+
+
+
+*************************************************************************************
+*****************************************SLIP5****************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP script for the following:Design a form to accept the details of 5 
+different items,such as itemcode,itemname,unitssold,rate.Display the bill in the tabular format .Use only 
+4 textboxes. (Hint:Use of explode function) .
+*************************************************************************************
+Slip5.html: 
+<html> 
+<head> 
+<style> 
+table { 
+border-collapse: collapse; 
+} 
+table, th, td { 
+border: 1px solid blue; 
+} 
+</style> 
+</head> 
+<body> 
+<form method="post" action="slip5.php"> 
+<center><h1>Enter details of 5 Items </h1> 
+<h3>item code <input type="text" name="itemcode" placeholder="ex 11,12,13,14,15" 
+/></h3> 
+<h3>item name <input type="text" name="itemname" /></h3> 
+<h3>units sold <input type="text" name="unitssold" /></h3> 
+<h3>rate <input type="text" name="rate" /></h3> 
+<input type="submit" value="Submit"/> 
+</center> 
+</form> 
+</body> 
+</html> 
+Slip5.php: 
+<?php 
+$itemcode = $_POST['itemcode']; 
+$itemname = $_POST['itemname']; 
+$unitssold = $_POST['unitssold']; 
+$rate = $_POST['rate']; 
+$i_code = explode(',',$itemcode); 
+$i_name = explode(',',$itemname); 
+$i_unit = explode(',',$unitssold); 
+$i_rate = explode(',',$rate); 
+$t_amt=(($i_unit[0]*$i_rate[0])+($i_unit[1]*$i_rate[1])+($i_unit[2]*$i_rate[2]) 
++($i_unit[3]*$i_rate[3])+($i_unit[4]*$i_rate[4])); 
+echo "<table align=center border=1>"; 
+echo"<tr><td>".<b>ItemCode</b>."</td><td>".<b>ItemName</b>."</td><td> ".<b>Units 
+Sold</b>. "</td><td>".<b>Rate</b>"</td></tr>"; 
+echo"<tr><td>".$i_code[0]."</td><td>".$i_name[0]."</td><td>".$i_unit[0]."</td><td>".$i_r
+ate[0]."</td></tr>"; 
+echo"<tr><td>".$i_code[1]."</td><td>".$i_name[1]."</td><td>".$i_unit[1]."</td><td>".$i_r
+ate[1]."</td></tr>"; 
+echo"<tr><td>".$i_code[2]."</td><td>".$i_name[2]."</td><td>".$i_unit[2]."</td><td>".$i_r
+ate[2]."</td></tr>"; 
+echo"<tr><td>".$i_code[3]."</td><td>".$i_name[3]."</td><td>".$i_unit[3]."</td><td>".$i_r
+ate[3]."</td></tr>"; 
+echo"<tr><td>".$i_code[4]."</td><td>".$i_name[4]."</td><td>".$i_unit[4]."</td><td>".$i_r
+ate[4]."</td></tr>"; 
+echo "<tr><th colspan=4></th></tr>"; 
+echo "<tr><th colspan=3>Total amount </th><td>".$t_amt."</td></tr>"; 
+echo "</table>"; 
+?> 
+****************************************OUTPUT*************************************
+Enter details of 5 Items
+item code
+11 ,12 ,13 ,
+item name
+pen, pencil
+units sold
+12,13,14,15
+rate
+25,30,35,49 Submit
+ItemCode. .ItemName. .Units Sold. .Rate
+11 pen 12 25
+12 pencil 13 30
+13 book 14 35
+14 d 15 49
+15 t 16 50
+Total amount 2715
+
+
+
+
+
+
+
+
+
+*************************************************************************************
+******************************************SLIP6**************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP script for the following:Design a form to accept two strings. Compare 
+the two strings using both methods(==operator & strcmp function). Append second string to the first 
+string.Accept the position from the user; from where the characters from the first string are 
+reversed.(Use radio buttons)
+*************************************************************************************
+Slip6.html: 
+<html> 
+<head><title> .html</title></head> 
+<body bgcolor="violet" > 
+<form action="slip6.php" method="post"> 
+<pre> 
+Enter first string ::<input type="text" name="str1"> 
+Enter second string::<input type="text" name="str2"> 
+Enter position::<input type='text' name="pos"> 
+<input type="radio" name="ch" value=1>compare 
+<input type="radio" name="ch" value=2>with datatype 
+<input type="radio" name="ch" value=3>append. 
+<input type="radio" name="ch" value=4>possition for reverse. 
+<input type="submit" value="check"> <input type="reset" value="cancel"> 
+</pre> 
+</form> 
+</body> 
+</html> 
+Slip6.php: 
+<?php 
+$str1=$_POST['str1']; 
+$str2=$_POST['str2'];
+$pos=$_POST['pos']; 
+$ch=$_POST['ch']; 
+echo"First string :: $str1.<br><br>"; 
+echo "Second string::$str2.<br><br>"; 
+echo"position for reverse::$pos.<br><br>"; 
+echo"choice is::$ch.<br><br>"; 
+switch($ch) 
+{ 
+case 1: 
+if($str1==$str2) 
+echo"Both string are equal.<br>"; 
+else 
+echo"Both string are not equal.<br>"; 
+break; 
+case 2: 
+if($str1===$str2) 
+echo"Both are exat equal.<BR>"; 
+else 
+echo"Both are not equal.<BR>"; 
+break; 
+case 3: 
+echo"After appending::"; 
+echo "$str1"."$str2"; 
+echo"<br>"; 
+break; 
+case 4: $len=strlen($str1)-$pos; 
+$s=substr($str1,$pos,$len); 
+$str4=strrev($s); 
+echo "After reverse::$str4.<br>"; 
+break; 
+} 
+?> 
+***************************************OUTPUT**************************************
+Enter first string ::
+SYBBA
+Enter second string::
+BAA
+Enter position::
+BCA
+compare 
+with datatype 
+append. 
+possition for reverse. 
+check cancel
+First string :: SYBBA. 
+Second string::BBA. 
+position for reverse::BCA. 
+choice is::1. 
+Both string are not equal. 
+First string :: SYBBA. 
+Second string::BBA. 
+position for reverse::BCA. 
+choice is::2. 
+Both are not equal. 
+First string :: SYBBA. 
+Second string::BBA. 
+position for reverse::BCA. 
+choice is::3. 
+After appending::SYBBABBA 
+First string :: SYBBA. 
+Second string::BBA. 
+position for reverse::BCA. 
+choice is::4. 
+
+
+
+
+
+*************************************************************************************
+**************************************SLIP7*******************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a menu driven PHP program to perform the following operations on an 
+associative array: 
+i.Display the elements of an array along with the keys. 
+ii.Display the size of an array 
+iii.Delete an element from an array from the given index. 
+iv.Reverse the order of each element’s key-value pair.[Hint:use array_flip()] 
+v.Traverse the elements in an array in random order[[Hint:use shuffle()] 
+*************************************************************************************
+Slip7.html: 
+<html> 
+<form action='slip7.php' method='post'> 
+<pre> <h3>OPERATIONS</h3> 
+1<input type='radio' name='a' value='1'>Display.<br> 
+2<input type='radio' name='a' value='2'>size.<br> 
+3<input type='radio' name='a' value='3'>delete.<br> 
+4<input type='radio' name='a' value='4'>reverse.<br> 
+5<input type='radio' name='a' value='5'>traverse.<br> 
+<input type='submit' value='ok'> <input type='reset' value='cancel'><br> 
+</pre> 
+</form> 
+</body> 
+</html> 
+Slip7.php: 
+<?php 
+$array=array('zero'=>0,'one'=>1,'two'=>2,'three'=>3,'four'=>4,'five'=>5); 
+$ch=$_POST['a']; 
+switch($ch) 
+{ 
+case 1:foreach($array as $key=>$value) 
+{ 
+echo"key:$key val:$value.<br>"; 
+}break; 
+case 2:echo sizeof($array); 
+break; 
+case 3 : 
+$len=sizeof($array); 
+array_splice($array,$len); 
+print_r( $array); 
+break; 
+case 4 : 
+print_r(array_flip($array)); 
+break; 
+case 5 : 
+shuffle($array); 
+print_r($array); 
+break; 
+} 
+?> 
+****************************************OUTPUT*************************************
+OPERATIONS
+1 Display.
+2 size.
+3 delete.
+4 reverse.
+5 traverse.
+ok cancel
+key:zero val:0. 
+key:one val:1. 
+key:two val:2. 
+key:three val:3. 
+key:four val:4. 
+key:five val:5. 
+6 
+Array ( [zero] => 0 [one] => 1 [two] => 2 [three] => 3 [four] => 4 [five] => 5 ) 
+Array ( [0] => zero [1] => one [2] => two [3] => three [4] => four [5] => five ) 
+Array ( [0] => 2 [1] => 3 [2] => 1 [3] => 4 [4] => 0 [5] => 5 ) 
+
+
+
+
+
+*************************************************************************************
+**************************************SLIP8******************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a menu driven PHP program to perform the following operations on 
+associative arrays: a)Sort the array by values(changing the keys)in ascending, descending order. b)Also 
+sort the array by values without changing the keys. c)Filter the odd elements from an array. d)Sort the 
+different arrays at a glance using single function. e)Merge the given arrays. f)Find the Union,intersection 
+& set difference of two arrays
+*************************************************************************************
+Slip8.html: 
+<html> 
+<body bgcolor="skyblue"> 
+<form action="slip8.php" method="post"> 
+<h2>Enter choice :</h2> 
+<input type="radio" name="ch" value=1> Sort array by values in ascending,descending 
+order<br> 
+<input type="radio" name="ch" value=2> Sort array by values without changing key values 
+<br> 
+<input type="radio" name="ch" value=3> Filter odd elements from array <br> 
+<input type="radio" name="ch" value=4> Sort different array at glance using single 
+function<br> 
+<input type="radio" name="ch" value=5> Merge given two arrays <br> 
+<input type="radio" name="ch" value=6> Find intersection of two array <br> 
+<input type="radio" name="ch" value=7> Find union of two array <br> 
+<input type="radio" name="ch" value=8> Find set difference of two array <br><br> 
+<input type="submit" value="SUBMIT"> <input type="reset" value="CLEAR"> 
+</body> 
+</html> 
+Slip8.php: 
+<?php 
+function is_odd($var) 
+{ 
+if($var%2==1) 
+return $var; 
+} 
+$choice=$_POST['ch']; 
+$arr=array('a'=>1,'b'=>2,'c'=>3,'d'=>4,'e'=>5,'f'=>6,'g'=>7,'h'=>8); 
+$arr1=array('l'=>11,'m'=>22,'n'=>33,'o'=>44,'p'=>55,'q'=>66,'r'=>77,'s'=>88); 
+$arr2=array('a'=>10,'b'=>20,'c'=>30,'d'=>40,'e'=>50,'f'=>60,'g'=>70,'h'=>80); 
+switch($choice) 
+{ 
+case 1: 
+sort($arr); 
+echo "Array in ascending order:<br>"; 
+print_r($arr); 
+rsort($arr); 
+echo "<br>Array in descending order:<br>"; 
+print_r($arr); 
+break; 
+case 2: 
+asort($arr); 
+echo "Array in ascending order:<br>"; 
+print_r($arr); 
+arsort($arr); 
+echo "<br>Array in descending order:<br>"; 
+print_r($arr); 
+break; 
+case 3: 
+print_r(array_filter($arr,'is_odd')); 
+break; 
+case 4: 
+array_multisort($arr,0,$arr1,1,$arr2,0); 
+print_r($arr); 
+echo "<br>"; 
+print_r($arr1); 
+echo "<br>"; 
+print_r($arr2); 
+echo "<br>"; 
+break; 
+case 5: 
+print_r(array_merge($arr,$arr1)); 
+break; 
+case 6: 
+print_r(array_intersect($arr,$arr1)); 
+break; 
+case 7: 
+$union=array_merge($arr,$arr1); 
+print_r(array_unique($union)); 
+break; 
+case 8: 
+print_r(array_diff($arr,$arr1)); 
+break; 
+} echo "<br><a href ='slip8.html'> RETURN</a>"; 
+?> 
+</font> 
+</body> 
+</html> 
+*****************************************OUTPUT************************************
+Enter choice :
+Sort array by values in ascending,descending order
+Sort array by values without changing key values
+Filter odd elements from array
+Sort different array at glance using single function
+Merge given two arrays
+Find intersection of two array
+Find union of two array
+Find set difference of two array
+SUBMIT CLEAR
+Array in ascending order:
+Array ( [0] => 1 [1] => 2 [2] => 3 [3] => 4 [4] => 5 [5] => 6 [6] => 7 [7] => 8 )
+Array in descending order:
+Array ( [0] => 8 [1] => 7 [2] => 6 [3] => 5 [4] => 4 [5] => 3 [6] => 2 [7] => 1 )
+RETURN
+Array in ascending order:
+Array ( [a] => 1 [b] => 2 [c] => 3 [d] => 4 [e] => 5 [f] => 6 [g] => 7 [h] => 8 )
+Array in descending order:
+Array ( [h] => 8 [g] => 7 [f] => 6 [e] => 5 [d] => 4 [c] => 3 [b] => 2 [a] => 1 )
+RETURN
+Array ( [a] => 1 [c] => 3 [e] => 5 [g] => 7 )
+RETURN
+Array ( [a] => 1 [b] => 2 [c] => 3 [d] => 4 [e] => 5 [f] => 6 [g] => 7 [h] => 8 )
+Array ( [l] => 11 [m] => 22 [n] => 33 [o] => 44 [p] => 55 [q] => 66 [r] => 77 [s] => 88 )
+Array ( [a] => 10 [b] => 20 [c] => 30 [d] => 40 [e] => 50 [f] => 60 [g] => 70 [h] => 80 )
+RETURN
+Array ( [a] => 1 [b] => 2 [c] => 3 [d] => 4 [e] => 5 [f] => 6 [g] => 7 [h] => 8 [l] => 11 [m] => 22 [n] => 33 [o] 
+=> 44 [p] => 55 [q] => 66 [r] => 77 [s] => 88 )
+RETURN
+Array ( )
+RETURN
+Array ( [a] => 1 [b] => 2 [c] => 3 [d] => 4 [e] => 5 [f] => 6 [g] => 7 [h] => 8 [l] => 11 [m] => 22 [n] => 33 [o] 
+=> 44 [p] => 55 [q] => 66 [r] => 77 [s] => 88 )
+RETURN
+Array ( [a] => 1 [b] => 2 [c] => 3 [d] => 4 [e] => 5 [f] => 6 [g] => 7 [h] => 8 )
+RETURN
+
+
+
+
+*************************************************************************************
+***************************************SLIP9*****************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write PHP script to define an interface which has methods area(),volume(). Define 
+constant PI.Create a class cylinder which implements this interface and calculate area and volume 
+*************************************************************************************
+Slip9.html: 
+<html> 
+<body> 
+<center> 
+<h2> Calculate area and value of cylinder</h2> 
+<form action="slip9.php" method="GET"> 
+<h3> Enter radius : <input type=text name=r><br> </h3> 
+<h3> Enter height : <input type=text name=h><br><br> </h3> 
+<input type=submit value=submit name=Show> 
+<input type=reset value=Reset name=Reset> 
+</form> 
+</center> 
+</body> 
+<html> 
+Slip9.php: 
+<?php 
+$r=$_GET['r']; 
+$h=$_GET['h']; 
+define('PI','3.14'); 
+interface cal 
+{ 
+function area($r,$h); 
+function vol($r,$h); 
+} 
+class cylinder implements cal 
+{ 
+function area($r,$h) 
+{ 
+$area = 2*PI*$r*($r+$h); 
+echo "<h3>The area of cylinder is :$area</h3>"; 
+} 
+function vol($r,$h) 
+{ 
+$vol = PI*$r*$r*$h; 
+echo "<h3>The volume of cylinder is :$vol</h3>"; 
+} 
+} 
+$c = new cylinder; 
+$c->area($r,$h); 
+$c->vol($r,$h); 
+?> 
+****************************************OUTPUT*************************************
+Calculate area and value of cylinder
+Enter radius :
+20
+Enter height :
+10 submit Reset
+The area of cylinder is :3768
+The volume of cylinder is :12560
+
+
+
+
+*************************************************************************************
+************************************SLIP10*******************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write class declarations and member function definitions for an employee(code, 
+name, designation). Design derived classes as emp_account (account_no, joining_date) from employee 
+and emp_sal (basic_pay, earnings, deduction) from emp_account.Write a menu driven PHP program 
+a)to build a master table b)to sort all entries c)to search an entry d)Display salary
+*************************************************************************************
+Slip10.html: 
+<!DOCTYPE html> 
+<html lang="en" dir="ltr"> 
+<head> 
+<meta charset="utf-8"> 
+<title></title> 
+</head> 
+<body> 
+<form class="" action="slip10.php" method="post"> 
+<input type="radio" name="rad" value="1">Build a Master Table <br><br> 
+<input type="radio" name="rad" value="2">Sort all entries <br><br> 
+<input type="radio" name="rad" value="3">Search an entry by Employee's Name 
+<input type="text" name="ename"> <br><br> 
+<input type="radio" name="rad" value="4">Display Salary <br><br> 
+<input type="submit" name="sub" value="Submit"> 
+</form> 
+</body> 
+</html> 
+Slip10.php: 
+<?php 
+class employee 
+{ 
+public $code,$name,$desig; 
+function __construct($a,$b,$c) 
+{ 
+$this->code=$a; 
+$this->name=$b; 
+$this->desig=$c; 
+} 
+public function display_emp() 
+{ 
+echo' 
+<td>'.$this->code.'</td> 
+<td>'.$this->name.'</td> 
+<td>'.$this->desig.'</td>'; 
+} 
+public function getname() 
+{ 
+return $this->name; 
+} 
+} 
+class emp_acc extends employee 
+{ 
+public $ano,$jdate; 
+function __construct($a,$b,$c,$d,$e) 
+{ 
+parent::__construct($a,$b,$c); 
+$this->ano=$d; 
+$this->jdate=$e; 
+} 
+public function display_acc() 
+{ 
+echo' 
+<td>'.$this->ano.'</td> 
+<td>'.$this->jdate.'</td>'; 
+} } 
+class emp_sal extends emp_acc 
+{ 
+public $bpay,$earns,$ded,$total; 
+function __construct($a,$b,$c,$d,$e,$f,$g,$h) 
+{ 
+parent::__construct($a,$b,$c,$d,$e); 
+$this->bpay=$f; 
+$this->earns=$g; 
+$this->ded=$h; 
+$this->total=$this->bpay + $this->earns - $this->ded; 
+} 
+public function display_sal() 
+{ 
+echo' 
+<td>'.$this->bpay.'</td> 
+<td>'.$this->earns.'</td> 
+<td>'.$this->ded.'</td>
+<td>'.$this->total.'</td>'; 
+} } 
+$emp[0]=new emp_sal('A923B','harshad','Staff','10001','21/09/2011','21000','5000','3000'); 
+$emp[1]=new emp_sal('A823B','sahil','HR','10002','22/09/2011','25000','5000','3000'); 
+$emp[2]=new 
+emp_sal('A723B','raj','Analyst','10003','23/09/2011','22000','5000','3000'); 
+$emp[3]=new 
+emp_sal('A623B','madhv','Organiser','10004','24/09/2011','21000','5000','3000'); 
+$emp[4]=new emp_sal('A523B','aditya','Manager','10005','25/09/2011','30000','5000','3000'); 
+$emp[5]=new emp_sal('A423B','jay','Staff','10006','26/09/2011','20000','5000','3000'); 
+$emp[6]=new emp_sal('A323B','sree','Analyst','10007','27/09/2011','21000','5000','3000'); 
+$emp[7]=new 
+emp_sal('A223B','mr bean','Organiser','10008','28/09/2011','21000','5000','3000'); 
+$emp[8]=new emp_sal('A123B','Shivani','Staff','10009','29/09/2011','20000','5000','3000'); 
+$emp[9]=new emp_sal('A023B','Priya','Staff','10010','30/09/2011','20000','5000','3000'); 
+$ch=$_POST['rad']; 
+$ename=$_POST['ename']; 
+$flag=0; 
+function mastertable($emp) 
+{ 
+echo '<table border="1" width="100%"> 
+<tr> 
+<th>Code</th> 
+<th>Name</th> 
+<th>Designation</th> 
+<th>Ac No</th> 
+<th>Join date</th> 
+<th>Basic Pay</th> 
+<th>Earnings</th> 
+<th>Deduction</th> 
+<th>Total Salary</th> 
+</tr>'; 
+for($i=0;$i<10;$i++) 
+{ 
+echo '<tr>'; 
+$emp[$i]->display_emp(); 
+$emp[$i]->display_acc(); 
+$emp[$i]->display_sal(); 
+echo '</tr>'; 
+} 
+echo '</table>'; 
+} 
+switch($ch) 
+{ 
+case 1: mastertable($emp); 
+break; 
+case 2: echo 'Sorting w.r.t Employee Code <br><br>'; 
+function srt($a,$b) 
+{ 
+return strcmp($a->code,$b->code); 
+} 
+usort($emp,"srt"); 
+mastertable($emp); 
+break; 
+case 3: echo "Searching for employee $ename .....<br><br>"; 
+for($i=0;$i<10;$i++) 
+{ 
+$temp=$emp[$i]->getname(); 
+if($temp==$ename) 
+{ 
+$flag=1; 
+break; 
+} } 
+if($flag==0) 
+{ 
+echo "Not Found<br>"; 
+} 
+else 
+{ 
+echo "Found in the records<br>"; 
+} break; 
+case 4: echo "Displaying Salary of all Employees .... <br><br>"; 
+echo '<table border="1" width="100%"> 
+<tr> 
+<th>Employee Name</th> 
+<th>Basic Pay</th> 
+<th>Earnings</th> 
+<th>Deduction</th> 
+<th>Total Salary</th> 
+</tr>'; 
+for($i=0;$i<10;$i++) 
+{ 
+echo '<tr> 
+<td>'.$emp[$i]->getname().'</td>'; 
+$emp[$i]->display_sal(); 
+} 
+break; 
+} 
+?> 
+****************************************OUTPUT************************************* 
+Build a Master Table
+Sort all entries
+Search an entry by Employee's Name
+HARSHAD
+Display Salary
+Submit
+Code Name Designation Ac 
+No Join date Basic 
+Pay Earnings Deduction Total 
+Salary
+A923B harshad Staff 10001 21/09/2011 21000 5000 3000 23000
+A823B sahil HR 10002 22/09/2011 25000 5000 3000 27000
+A723B raj Analyst 10003 23/09/2011 22000 5000 3000 24000
+A623B madhv Organiser 10004 24/09/2011 21000 5000 3000 23000
+A523B aditya Manager 10005 25/09/2011 30000 5000 3000 32000
+A423B jay Staff 10006 26/09/2011 20000 5000 3000 22000
+A323B sree Analyst 10007 27/09/2011 21000 5000 3000 23000
+A223B mr 
+bean Organiser 10008 28/09/2011 21000 5000 3000 23000
+A123B Shivani Staff 10009 29/09/2011 20000 5000 3000 22000
+A023B Priya Staff 10010 30/09/2011 20000 5000 3000 22000
+Sorting w.r.t Employee Code
+Code Name Designation Ac 
+No Join date Basic 
+Pay Earnings Deduction Total 
+Salary
+A023B Priya Staff 10010 30/09/2011 20000 5000 3000 22000
+A123B Shivani Staff 10009 29/09/2011 20000 5000 3000 22000
+A223B mr 
+bean Organiser 10008 28/09/2011 21000 5000 3000 23000
+A323B sree Analyst 10007 27/09/2011 21000 5000 3000 23000
+A423B jay Staff 10006 26/09/2011 20000 5000 3000 22000
+A523B aditya Manager 10005 25/09/2011 30000 5000 3000 32000
+A623B madhv Organiser 10004 24/09/2011 21000 5000 3000 23000
+A723B raj Analyst 10003 23/09/2011 22000 5000 3000 24000
+A823B sahil HR 10002 22/09/2011 25000 5000 3000 27000
+A923B harshad Staff 10001 21/09/2011 21000 5000 3000 23000
+Searching for employee harshad .....
+Found in the records
+Displaying Salary of all Employees ....
+Employee Name Basic Pay Earnings Deduction Total Salary
+harshad 21000 5000 3000 23000
+sahil 25000 5000 3000 27000
+raj 22000 5000 3000 24000
+madhv 21000 5000 3000 23000
+aditya 30000 5000 3000 32000
+jay 20000 5000 3000 22000
+sree 21000 5000 3000 23000
+mr bean 21000 5000 3000 23000
+Shivani 20000 5000 3000 22000
+Priya 20000 5000 3000 22000
+
+
+
+
+
+
+*************************************************************************************
+*****************************************SLIP11**************************************
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Derive a class square from class Rectangle.Create one more class circle. Create an 
+interface with only one method called area().Implement this interface in all the classes.Include 
+appropriate data members and constructors in all classes.Write a PHP program to accept details of a 
+square, circle and rectangle and display the area
+*************************************************************************************
+Slip11.html: 
+<html> 
+<body bgcolor=skyblue> 
+<form action="slip11.php" METHOD="post"> 
+<pre> 
+<h1>Circle:</h1> 
+Radius: <input type=text name=a><BR> 
+<h1>square:</h1> 
+side: <input type=text name=b><BR> 
+<h1>Rectangle:</h1> 
+length: <input type=text name=c><BR> 
+Breadth: <input type=text name=d><BR> 
+<input type=submit value=submit> <input type="reset" value=cancel> 
+</pre> 
+</form> 
+</body> 
+</html> 
+Slip11.php: 
+<?PHP 
+$a=$_POST['a']; 
+$b=$_POST['b']; 
+$c=$_POST['c']; 
+$d=$_POST['d']; 
+interface one 
+{ 
+function area($c,$d); 
+} 
+class rect implements one 
+{ 
+function area($c,$d) 
+{ 
+$area=$c*$d; 
+echo"Area of rectangle......:".$area; 
+echo"<br><BR>"; 
+} 
+} 
+class square extends rect 
+{ 
+function area($b,$b1) 
+{ 
+$area=$b*$b1; 
+echo"Area of Square.........:".$area; 
+echo"<BR><br>"; 
+} 
+} 
+class circle 
+{ 
+function area($a) 
+{ 
+$area=0.5*$a*$a; 
+echo"Area of circle.........:".$area; 
+echo"<br><BR>"; 
+} 
+} 
+$o=new rect(); 
+$o->area($c,$d); 
+$s=new square(); 
+$s->area($b,$b); 
+$c=new circle(); 
+$c->area($a); 
+echo "<br>"; 
+?> 
+*****************************************OUTPUT************************************
+Circle:
+Radius: 
+12
+square: 
+side: 
+12
+Rectangle: 
+length: 
+11
+Breadth: 
+5
+submit cancel
+Area of rectangle......:55
+Area of Square.........:144
+Area of circle.........:242
+
+
+
+
+
+
+
+
+*************************************************************************************
+*****************************************SLIP12************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write PHP Script to create a class account(accno,cust_name).Derive two classes 
+from account as saving_acc(balance, min_amount) and current_acc (balance,min_amount) . Display a 
+menu a)Saving Account b) Current Account For each of this display a menu with the following options .1. 
+Create account 2.Deposit 3.Withdrawal
+*************************************************************************************
+Slip12.html: 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<form action="slip12.php" method="GET"> 
+Please select your Account<br /> 
+<input type="checkbox" name="check_b[]" value="saving" />Saving Account<br /> 
+<input type="checkbox" name="check_b[]" value="current" />Current Account<br /> 
+<select id="saving"> 
+<option value="create">Create</option> 
+<option value="deposite">Deposit</option> 
+<option value="withderw">Withderw</option> 
+</select> 
+<input type="submit" value="sumbit" /> 
+</form> 
+</body> 
+</html> 
+Slip12.php: 
+<!DOCTYPE html> 
+<html> 
+<body> 
+<?php 
+class Account { 
+public $acc_no; 
+public $acc_name; 
+public function __construct($acc_name, $acc_no) { 
+$this->acc_name = $acc_name; 
+$this->acc_no = $acc_no; 
+} 
+public function intro() { 
+echo "The Account name {$this->acc_name} and Account No is {$this->acc_no}."; 
+} 
+} 
+class saveing_acc extends Account { 
+public $blance; 
+public $min_amount; 
+public function __construct($acc_name, $acc_no, $blance,$min_amount) { 
+$this->acc_name = $acc_name; 
+$this->acc_no = $acc_no; 
+$this->blance = $blance; 
+$this->min_amount = $min_amount; 
+} 
+public function intro() { 
+echo"<table border='2'>"; 
+echo"<tr><td>Account Name</td><td>Account 
+no</td><td>balance</td><td>min_balance</td></tr>"; 
+echo "<tr><td>{$this->acc_name}</td>"; 
+echo "<td>{$this->acc_no}</td>" ; 
+echo"<td>{$this->blance}</td>"; 
+echo"<td>{$this->min_amount}</td></tr>"; 
+} } 
+class current_acc extends Account {
+public $blan; 
+public $min_amt; 
+public function __construct($acc_name, $acc_no, $blan,$min_amount) { 
+$this->acc_name = $acc_name; 
+$this->acc_no = $acc_no; 
+$this->blan = $blan; 
+$this->min_amount = $min_amount; 
+} 
+public function intro() { 
+echo " <tr><td>{$this->acc_name}</td>"; 
+echo "<td>{$this->acc_no}</td>" ; 
+echo "<td>{$this->blan}</td>"; 
+echo "<td>{$this->min_amount}</td></tr> "; 
+} 
+} 
+echo"</table>"; 
+$saveing_acc= new saveing_acc("harshad", 1111, 5000,1000); 
+$saveing_acc->intro(); 
+$current_acc=new current_acc("Sahil",2222,100000,1000); 
+$current_acc->intro(); 
+?> 
+</body> 
+</html> 
+*****************************************OUTPUT************************************
+please select your account
+saving account
+current account
+ 
+sumbit
+Account Name Account no balance min_balance
+harshad 1111 5000 1000
+sahil 2222 100000 1000
+
+
+
+
+
+
+
+*************************************************************************************
+*****************************************SLIP13************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Implement calculator to convert distances between (both ways) miles and 
+kilometres.One mile is about 1.609 kilometres.User interface (distance. html) has one text-input ,two 
+radio-buttons, submit and reset_buttons.Values are posted to PHP-script(distance.php)which calculates 
+the conversions according the user input
+*************************************************************************************
+Slip13.html: 
+<html> 
+<body> 
+<center> 
+<h2> Calculate km and mile</h2> 
+<form action="slip13.php" method="POST"> 
+Enter Distance :<input type="text" name="distance" /><br/> 
+Kms:<input type="radio" name="units" value="kms" /><br/> 
+Miles:<input type="radio" name="units" value="miles" /> 
+<br/> 
+<input type="submit" value="submit" name="Show" /> 
+<input type="reset" value="Reset" name="Reset" /> 
+</form> 
+</center> 
+</body> 
+<html> 
+Slip13.php: 
+<?php 
+$distance=$_POST['distance']; 
+$units=$_POST['units']; 
+if($units=='kms'){ 
+$miles=$distance/1.60934; 
+echo'The distance is'.round($miles).'miles.'; 
+} 
+else 
+{ 
+$kms=$distance*1.60934; 
+echo'The distance is'.round($kms).'kms.'; 
+} 
+?> 
+***************************************OUTPUT**************************************
+Calculate km and mile
+Enter Distance :
+100
+Kms:
+Miles:
+submit Reset
+The distance is62miles.
+
+
+
+
+
+
+
+
+*************************************************************************************
+*****************************************SLIP14************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Using regular expressions check for the validity of entered email-id.The @ symbol 
+should not appear more than once.The dot(.)can appear at the most once before @ and at the most 
+twice or at least once after @ symbol.The substring before @ should not begin with a digit or 
+underscore or dot or @ or any other special character.(Use explode and ereg function.).
+*************************************************************************************
+Slip14.html: 
+<html> 
+<body> 
+<form name="form1" method="post" action="slip14.php"> 
+Enter the EmailID *<input type="text" name="email"></input> 
+<input type="submit" value="submit"></input> 
+</form> 
+</body>
+</html> 
+Slip14.php: 
+<?php 
+$email=$_POST['email']; 
+$regex = '/^[_a-z0-9-]+(\.[a-z0-9-]+)*@[a-z0-9]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
+if(preg_match($regex,$email)) 
+{ echo $email . " it is valid email id"; } 
+else 
+{ echo $email ."invalid email,Please try again."; } 
+?> 
+**************************************OUTPUT***************************************
+Enter the EmailID *
+bankarharshad@gmail.com submit
+bankarharshad@gmail.comit is valid email id
+
+
+
+
+
+*************************************************************************************
+*****************************************SLIP15************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write PHP program to create input form for Grocery that displays List of grocery 
+items with checkboxes and create a bill according to list of items selected after clicking submit button.
+*************************************************************************************
+Slip15.html: 
+<!DOCTYPE HTML PUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html> 
+<head> 
+<meta http equiv="Content-Type" content="text/html;charset=UTF-8"> 
+<title></title> 
+</head> 
+<body> 
+<form action="slip15.php" method="POST"> 
+<input type="checkbox" name="g[]" value=120>Rice<br> 
+<input type="checkbox" name="g[]" value=200>Oils<br> 
+<input type="checkbox" name="g[]" value=50>Milk<br> 
+<input type="checkbox" name="g[]" value=30>Bread<br><br> 
+<input type="submit" value="show bill"> 
+</form> 
+</body> 
+</html> 
+Slip15.php: 
+<?php 
+extract($_POST); 
+$total=0; 
+$len=count($g); 
+for($i=0;$i<$len;$i++) 
+{ 
+$total=$total+$g[$i]; 
+} 
+echo"<h1>Final Total of purchsed grocery is".$total."</h1>"; 
+?> 
+***************************************OUTPUT**************************************
+Rice
+Oils
+Milk
+Bread
+show bill
+Final Total of purchsed grocery is120
+Final Total of purchsed grocery is400
+
+
+
+*************************************************************************************
+*****************************************SLIP16************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME: Write a PHP program that accept customer name,consumer number and number of 
+electricity units consumed from an input form and print electricity bill from following data  For first 50 
+units–Rs.3.50/unit  For next 100units–Rs.4.00/unit  For next 100units–Rs.5.20/unit  For units 
+above 250–Rs.6.50/unit
+*************************************************************************************
+Slip16.html:
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title></title> 
+</head> 
+<body> 
+<form action="slip16.php" method="POST"> 
+<table> 
+<tr> 
+<td>Customer Name:</td> 
+<td><input type="text" name="cname"></td> 
+</tr> 
+<tr> 
+<td>Consumer Number:</td> 
+<td><input type="number" name="cnumber"/></td> 
+</tr> 
+</tr> 
+<td>Electricity Unit:</td> 
+<td><input type="number" name="unit"/></td> 
+</tr> 
+<tr> 
+<td colspan="2" align="center"> 
+<input type="submit" value="Show Bill"/> 
+</td> 
+</tr> 
+</table> 
+</form> 
+</body> 
+</html>
+Slip16.php: 
+<?php 
+extract($_POST); 
+if($unit<=50) 
+{ 
+$bill=($unit*3.50)+150; 
+echo "<table border='1'> 
+<tr><th>Customer Name </th> 
+<th> Consumer Number</th> 
+<th>Unit</th> 
+<th>Bill Amount</th></tr>"; 
+echo "<tr><td>$cname</td> 
+<td>$cnumber</td> 
+<td>$unit<td> 
+<td>$bill</td></tr>"; 
+} 
+elseif($unit>50 && $unit<=150) 
+{ 
+$bill=($unit*4.00)+150; 
+echo "<table border='1'> 
+<tr><th>Customer Name</th> 
+<th>Consumer Number</th> 
+<th>Unit</th> 
+<th>Bill Amount</th></tr>"; 
+echo "<tr><td>$cname</td> 
+<td>$cnumber</td> 
+<td>$unit</td> 
+<td>$bill</td></tr>"; 
+} 
+elseif($unit>150 && $unit<=250) 
+{ 
+$bill ($unit*5.20)+150; 
+echo "<table border='1'> 
+<tr><th>Customer Name</th> 
+<th> Consumer Number</th> 
+<th>Unit</th> 
+<th>Bill Amount</th></tr>"; 
+echo "<tr><td>$cname</td> 
+<td>$cnumber</td> 
+<td>$unit</td> 
+<td>$bill</td></tr>"; 
+} 
+else 
+{ 
+$bill=($unit*6.50)+150; 
+echo "<table border='1'> 
+<tr><th>Customer Name</th> 
+<th>Consumer Number</th> 
+<th>Unit</th> 
+<th>Bill Amount </th></tr>"; 
+echo "<tr><td>$cname</td> 
+<td>$enumber</td> 
+<td>$unit</td> 
+<td>$bill</td></tr>"; 
+} 
+?> 
+**************************************OUTPUT*************************************** 
+Customer Name:
+Consumer Number:
+Electricity Unit:
+Show Bill
+Customer Name Consumer Number Unit Bill 
+Amount
+harshad 2 7 174.5
+
+
+
+
+
+
+************************************************************************************
+*****************************************SLIP17************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME:Write a PHP program for course registration of Learner in an institute that accept 
+Name,Course to be admitted,Mobile number using input form validation such as Name should be only 
+string of character,mobile number should contain digits with valid length and so on.and give feedback to 
+Learner with registration details including registration number
+*************************************************************************************
+Slip17.html: 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title></title> 
+</head> 
+<body> 
+<form action="slip17.php" method="POST"> 
+Name:-<input type="text" name="name"><br><br> 
+Select Course:-<select name="course"> 
+<option value="BBA-CA">BBA-CA 
+<option value="BCA(Science)">BCA(Science) 
+</select><br><br> 
+Mobile No.:-<input type="text" name="number"/><br<br> 
+<input type="submit" value="Submit"/> 
+</form> 
+</body> 
+</html> 
+Slip17.php: 
+<?php 
+extract($_POST); 
+if(preg_match("/[0-9]/",$name)) 
+{ echo "Name is not valid<br>"; } 
+else 
+{ 
+$len=strlen($number); 
+if(!(preg_match("/[a-z][A-Z]/",$number)) && $len=10) 
+{ 
+$regNum=rand(1,7000); 
+echo "Your Register Successfully and Your Registerd Details <br>"; 
+?> 
+<table border='1'> 
+<tr> 
+<th>Name</th> 
+<th>Course</th> 
+<th>Mobile</th> </tr> 
+<tr> 
+<td><?php echo $name;?></td> 
+<td><?php echo $course;?></td> 
+<td><?php echo $number;?></td> </tr> 
+<tr> 
+<td colspan="3" align="center"> 
+<h1>Registration Number: <?php echo $regNum;?></h1> 
+</td> 
+</tr> 
+</table> 
+<?php 
+} 
+else 
+{ 
+echo "this is not valid Number <br>"; 
+} } ?> 
+***************************************OUTPUT**************************************
+Name:-
+Select Course:-
+Mobile No.:-
+Submit
+Your Register Successfully and Your Registerd Details
+Name Course Mobile
+harshad BBA-CA 9309459020
+Registration Number: 3111
+
+
+
+
+
+
+************************************************************************************
+*****************************************SLIP18************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME:Write a PHP script to create a login form with a username and password. Once the 
+user logs in,the second form should be displayed to accept user details (name,city,phoneno).If the user 
+doesn’t enter information within a specified time limit,expire his session and give a warning.
+*************************************************************************************
+Slip18.html: 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title></title> 
+</head> 
+<body> 
+<form method="POST" action="slip18.php"> 
+<p>User Name: <input type="text" name="user"><br> 
+<p>Password :<input type="password"><br><br> 
+<input type="submit" value="Login"><br> 
+</form> 
+</body> 
+</html> 
+Slip18.php: 
+<?php 
+$auth_yes=0; 
+session_start(); 
+?> 
+<form methods"GET" action="slip18-1.php"> 
+<fieldset> 
+<legend>Enter username and password</legend> 
+<p>Roll_No.:&nbsp&nbsp&nbsp<input type="text" name="rno"> <br> 
+<p>Name:&nbsp&nbsp&nbsp<input type="text" name="nm"><br> 
+<p>City:&nbsp&nbsp&nbsp;&nbsp&nbsp&nbsp<input type="text" name="ct"><br><br> 
+<input type="submit" value="Submit"> 
+</form> 
+Slip18-1.php: 
+<?php 
+$a=$_GET['rno']; 
+$b=$_GET['nm']; 
+$c=$_GET['ct']; 
+session_start(); 
+echo time()."<br>"; 
+$newt=time()+60; 
+if($newt<time()) 
+echo"time out"; 
+else 
+{ 
+echo"Roll_No=$a"."<br>"; 
+echo"Name=$b"."<br>"; 
+echo"City=$c"."<br>"; 
+} 
+session_destroy(); 
+?> 
+****************************************OUTPUT*************************************
+User Name:
+HARSHAD
+Password :
+***** Login
+Enter username and password 
+Roll_No.: 
+Name: 
+harshad
+City: 
+phaltan
+Submit
+930904590
+Roll_No=6108 
+Name=harshad
+City=phaltan
+
+
+
+
+*************************************************************************************
+*****************************************SLIP19************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME:: Write a PHP script to keep track of number of times the webpage has been 
+accessed.
+*************************************************************************************
+Slip19.php: 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+<title></title> 
+</head> 
+<body> 
+Slip19.php
+<?php 
+session_start(); 
+if(isset($_SESSION['cnt'])) 
+$_SESSION['cnt']=$_SESSION['cnt']+1; 
+else 
+$_SESSION['cnt']=1; 
+echo "Visit Count:-".$_SESSION['cnt']; ?> 
+</body> 
+</html> 
+**************************************OUTPUT***************************************
+Visit Count:-3
+
+
+
+
+
+*****************************************SLIP20************************************** 
+NAME: BANKAR HARSHAD NAMDEV Class:S.Y.BBA(CA) Roll No.:6108 
+SUBJECT NAME:PHP
+PROGRAM NAME:Write a PHP script to change the preferences of your webpage like font style, font 
+size, font color,back ground color using cookie.Display selected settings on next webpage and actual 
+implementation (with new settings) on third web page 
+*************************************************************************************
+Slip20.html: 
+<html>
+<body>
+<form action="slip202.php" method="get">
+<center>
+<b>Select font style :</b><input type=text name=s1>
+<b>Enter font size : </b><input type=text name=s>
+<b>Enter font color :</b><input type=text name=c>
+<b>Enter background color :</b><input type=text name=b>
+<input type=submit value="Next">
+</center>
+</form>
+</body>
+</html>
+Slip202.php: 
+<?php
+echo "style is ".$_GET['s1']."
+color is ".$_GET['c']."
+Background color is ".$_GET['b']."
+size is ".$_GET['s'];
+setcookie("set1",$_GET['s1'],time()+3600);
+setcookie("set2",$_GET['c'],time()+3600);
+setcookie("set3",$_GET['b'],time()+3600);
+setcookie("set4",$_GET['s'],time()+3600);
+?>
+<a href="3.php">Show</a>
+Slip3.php: 
+<?php
+$style=$_COOKIE['set1'];
+$color=$_COOKIE['set2'];
+$size=$_COOKIE['set4'];
+$b_color=$_COOKIE['set3'];
+$msg="Genus iT Solution";
+echo "<body bgcolor=$b_color>";
+echo "<font color=$color size=$size face=$style>$msg";
+echo "</font></body>";
+?>
+**************************************OUTPUT*************************************** 
+Select font style :
+roman
+Enter font size :
+12
+Enter font color :
+w hite
+Enter background color :
+red Next
+Genus iT Solution
+*************************************************************************************

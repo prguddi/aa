@@ -1,0 +1,4218 @@
+*********************************slip1(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- A)Write menu driven program using ‘C’ forBinary Search Tree.The menu 
+ includes
+ - CreateaBinarySearchTree
+ - Insert element in a BinarySearchTree
+ - Display
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct node 
+{
+struct node *l,*r;
+int data;
+}NODE;
+NODE *insert(NODE *h,int v)
+{
+NODE *temp;
+temp=(NODE *)malloc(sizeof(NODE));
+temp->data=v;
+temp->l=NULL;
+temp->r=NULL;
+if(h==NULL)
+{
+h=temp;
+}
+else if(v<h->data) 
+{
+h->l=insert(h->l,v);
+}
+else if(v>h->data)
+h->r=insert(h->r,v);
+return h;
+}
+int main()
+{
+int n,i,val;
+NODE *head;
+head=NULL;
+printf("Enter How many nodes\t");
+scanf("%d",&n);
+for(i=0;i<n;i++)
+{
+printf("Enter value :");
+scanf("%d",&val);
+head=insert(head,val);
+}
+printf("\nDisplay :\n",insert);
+}
+**************************************OUTPUT:***********************************
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+1
+Enter any number :
+234
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+2
+2
+3
+4
+Total number of node :3
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+
+
+
+
+
+
+***************************************************************************
+*********************************slip1(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B)Write a ‘C’ program to evaluate a given polynomial using function. 
+(Use array)
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<math.h>
+int eval(int [],int,int);
+int main()
+{
+ int a[20]={0},i,deg1,s,x; 
+ printf("Enter degree of polynomial equation : \n");
+ scanf("%d",&deg1);
+ printf("\nEnter your equation (Coefficient only):\n");
+ for(i=deg1;i>=0;i--)
+ {
+ scanf("%d",&a[i]);
+ }
+ // printing equation.
+ printf("\nEquation : ");
+ for(i=deg1;i>=0;i--)
+ {
+ if(a[i]>=0)
+ {
+ printf("+");
+ }
+ else
+ {
+ printf("-"); }
+ printf("%dx^%d",abs(a[i]),i);
+ }
+ printf("\nEnter value of x :\n");
+ scanf("%d",&x);
+ s=eval(a,deg1,x);
+ printf("Evaluation of polynomial :%d",s);}
+int eval(int a[],int n,int x)
+{
+ int sum=0,i;
+ for(i=0;i<=n;i++)
+{
+ sum=sum+(a[i]*pow(x,i));
+ }
+ return sum; }
+***********************************OUTPUT:-*************************************
+Enter degree of polynomial equation :
+1Enter your equation (Coefficient only):
+1
+1
+Equation : +1x^1+1x^0
+Enter value of x :
+1
+Evaluation of polynomial :2
+
+
+
+
+
+***************************************************************************
+*********************************slip2(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- A)Write a ‘C’ program to accept a string from user and reverse it using 
+Static implementation of Stack
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int top=-1, i;
+char stack[50];char array1[50];char array2[50];
+void reverse();
+int main()
+{
+ printf("Enter string:\n");
+ fgets(array1,sizeof(array1),stdin);
+ for(i=0;array1[i]!='\0';i++)
+ {
+ top=top+1;
+ stack[top]=array1[i];
+ }
+ reverse();
+ printf("\n\nReversed String :\n");
+ puts(array2);
+}
+void reverse()
+{
+ for(i=0;top>0;i++)
+ { top=top-1;
+ array2[i]=stack[top];
+ }
+}
+********************************OUTPUT:-**********************************
+Enter string:
+12356789
+Reversed String :
+98765321
+
+
+
+***************************************************************************
+*********************************slip2(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B) Write a ‘C’ program to create Circularly Doubly Linked list and display it. 
+[10M]
+***************************************************************************
+#include<stdlib.h>
+#include<stdio.h>
+struct node
+{
+ int data;
+ struct node * prev,*next;
+};
+struct node *head=NULL;
+struct node * cn()
+{
+ struct node * n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return (n);
+}
+void createnode()
+{
+ int i,n,x;
+ struct node *temp,*newnode;
+ printf("Enter size of linked list:\n");
+ scanf("%d",&n);
+ printf("Enter elements of linked list:\n");
+ for(i=1;i<=n;i++)
+ { scanf("%d",&x);
+ if(head==NULL)
+ {
+ head=cn();
+ head->data=x;
+ head->next=head;
+ head->prev=head;
+ temp=head;
+ }
+ else
+ {
+ newnode=cn();
+ newnode->data=x;
+ newnode->prev=temp;
+ newnode->next=head;
+ temp->next=newnode;
+ head->prev=newnode;
+ temp=newnode;
+ }
+ }
+}
+void display()
+{
+ struct node * temp;
+ printf("\n");
+ if(head==NULL)
+ {
+ printf("List is empt.\n"); 
+ }
+ else
+ {
+ temp=head;
+ while(temp->next!=head)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next;
+ }
+ printf("%d\n",temp->data);
+ }
+}
+int main()
+{
+ int choice,a=0;
+ while(choice!=3)
+ {
+ printf("\n\n1. Create Linked list.\n");
+ printf("2. Display.\n");
+ printf("3. Exit.\n\n");
+ scanf("%d",&choice);
+ switch(choice)
+ {
+ case 1: if(a==1)
+ {
+ printf("You have already created a Linked list.\n");
+ }
+ else
+ { createnode();
+ a++;
+ }
+ break;
+ case 2: display();
+ break;
+ case 4: exit(0);
+ defalut: printf("Enter a valid choice\n");
+ }
+ }
+}
+********************************OUTPUT:-**********************************
+1. Create Linked list.
+2. Display.
+3. Exit.
+1
+Enter size of linked list:
+2
+Enter elements of linked list:
+3
+1
+
+
+
+
+***************************************************************************
+*********************************slip3(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME::- A)Write a program to create two singly linked list of elements of type 
+integer and find the union of the linked lists.(Accept elements in the sorted order) [20M]
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node* next;
+};
+struct node* head1=NULL;
+struct node* head2=NULL;
+struct node*intersection=NULL;
+struct node* union1=NULL;
+void traverse(struct node** head);
+struct node* cn()
+{
+ struct node * n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createnode(struct node **head,int n)
+{
+ int x,i=1;
+ struct node * newnode,*temp;
+ printf("Enter elemets for linked list :\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(*head==NULL)
+ {
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ *head=newnode;
+ temp=*head;
+ }
+ else
+ {
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode;
+ } 
+ } 
+}
+void intersection1(int h1, int h2)
+{
+ int i;
+ struct node *temp1,*temp2,*temp3,*newnode;
+ temp1=head1;
+ temp2=head2;
+ 
+ printf("Intersection :\n");
+ // if(temp1==NULL)
+ // printf("null");
+ while(temp1!=NULL)
+ {
+ while (temp2!=NULL)
+ {
+ if(temp1->data==temp2->data)
+ {
+ if(intersection==NULL)
+ {
+ newnode=cn();
+ newnode->data=temp1->data;
+ newnode->next=NULL;
+ intersection=newnode;
+ temp3=intersection;
+ //printf("%d\n",temp3->data);
+ }
+ else
+ {
+ newnode=cn();
+ newnode->data=temp1->data;
+ newnode->next=NULL;
+ temp3->next=newnode;
+ temp3=newnode;
+ temp3->next=NULL;
+ }
+ 
+ }
+ temp2=temp2->next;
+ }
+ temp1=temp1->next;
+ temp2=head2;
+ } 
+ traverse(&intersection);
+}
+void union_linkedlist()
+{
+ int i,cnt;
+ struct node *temp1,*temp2,*temp3,*newnode;
+ temp1=head1;
+ temp2=head2;
+ 
+ printf("Union :\n");
+ while(temp1!=NULL)
+ { 
+ if(union1==NULL)
+ {
+ newnode=cn();
+ newnode->data=temp1->data;
+ newnode->next=NULL;
+ union1=newnode;
+ temp3=union1; 
+ }
+ else
+ {
+ newnode=cn();
+ newnode->data=temp1->data;
+ newnode->next=NULL;
+ temp3->next=newnode;
+ temp3=newnode;
+ temp3->next=NULL; 
+ }
+ temp1=temp1->next;
+ }
+ temp1=head1;
+ while(temp2!=NULL)
+ {
+ cnt=0;
+ while(temp1!=NULL)
+ {
+ if(temp2->data==temp1->data)
+ {
+ cnt++;
+ }
+ temp1=temp1->next;
+ }
+ if(cnt==0)
+ {
+ newnode=cn();
+ newnode->data=temp2->data;
+ newnode->next=NULL;
+ temp3->next=newnode;
+ temp3=newnode;
+ temp3->next=NULL; 
+ }
+ temp2=temp2->next;
+ temp1=head1;
+ }
+ traverse(&union1); 
+}
+void traverse(struct node** head) //Function to traverse Linked list.
+{
+ struct node * temp4;
+ temp4=*head;
+ while(temp4!=NULL)
+ {
+ printf("%d\n",temp4->data);
+ temp4=temp4->next;
+ }
+}
+int main()
+{
+ int h1,h2,choice;
+ printf("\nEnter size of first linked list :\n");
+ scanf("%d",&h1);
+ createnode(&head1,h1);
+ printf("\nEnter size of second node :\n");
+ scanf("%d",&h2);
+ createnode(&head2,h2);
+ while(choice!=3)
+ {
+ printf("\n\n1. Intersection \n");
+ printf("2. Union \n");
+ printf("3. Exit \n\n");
+ scanf("%d",&choice);
+ switch(choice)
+ {
+ case 1: intersection1(h1,h2);
+ break;
+ case 2: 
+ break;
+ case 3:exit(0);
+ break;
+ }
+ }
+}
+********************************OUTPUT:-**********************************
+Enter size of first linked list :
+1
+Enter elemets for linked list :
+2
+Enter size of second node :
+3
+Enter elemets for linked list :
+2
+2
+2
+1. Intersection
+2. Union
+3. Exit
+1
+Intersection :
+2
+2
+2
+1. Intersection
+2. Union
+3. Exit
+
+
+
+
+
+
+***************************************************************************
+*********************************slip3(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B)Write a ‘C’ program to read the adjacency matrix of directed graphand 
+convert it into adjacency list. [10M]
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+struct n
+{
+ int data;
+ struct n *link;
+};
+typedef struct n NODE;
+NODE *getnode(int);
+NODE *findlast(NODE *);
+void display(NODE *[]);
+# define V 100
+int adj[V][V];
+int n;
+void init()
+{
+ int i,j;
+ for(i=0;i<n;i++)
+ {
+ for(j=0;j<n;j++)
+ {
+ adj[i][j]=0;
+ } }}
+void addEdge()
+{
+ int i,max_edges,u,v;
+ max_edges = n*(n-1)/2;
+ for(i=1;i<=max_edges;i++)
+ {
+ printf("Enter edge [%d] (-1 -1 to quit): ",i);
+ scanf("%d%d",&u,&v);
+ if((u==-1)&&(v==-1))
+ {
+ break; }
+ else if(u>=n || v>=n || u<0 || v<0)
+ {
+ printf("Invalid vertex\n");
+ i--; }
+ else
+ {
+ adj[u][v]=1; 
+ adj[v][u]=1; } }}
+void printadjmatrix()
+{
+ int i,j;
+ printf("\nAdjacency matrix :\n\n");
+ for(i=0;i<n;i++)
+ {
+ for(j=0;j<n;j++)
+ {
+ printf("%d ",adj[i][j]); }
+ printf("\n"); }}
+int main()
+{
+ NODE *ptr,*temp,*h[10];
+ int i,j;
+ printf("Enter number of vertices :\n");
+ scanf("%d",&n);
+ init();
+ addEdge();
+ printadjmatrix();
+ for(i=0;i<n;i++)
+ {
+ h[i]=NULL;
+ }
+ for(i=0;i<n;i++)
+ {
+ for(j=0;j<n;j++)
+ {
+ if(adj[i][j]==1)
+ {
+ temp=getnode(j);
+ if(h[i]==NULL)
+ {
+ h[i]=temp; }
+ else
+ {
+ ptr=findlast(h[i]);
+ ptr->link=temp;
+ } } } }
+ printf("\nAdjacency list :\n");
+ display(h);
+ return 0;
+}
+NODE *getnode(int j)
+{
+ NODE * temp;
+ temp=(NODE *)malloc(sizeof(NODE));
+ temp->data=j;
+ temp->link=NULL;
+ return(temp);
+}
+NODE *findlast(NODE *h)
+{
+ NODE *ptr;
+ for(ptr=h;ptr->link!=NULL;ptr=ptr->link);
+ return(ptr);
+}
+void display(NODE *h[10])
+{
+ NODE *ptr;
+ int i;
+ for(i=0;i<n;i++)
+ {
+ printf("\n V%d ",i);
+ ptr=h[i];
+ if(ptr==NULL)
+ printf(" NULL");
+ while(ptr!=NULL)
+ {
+ printf(" ->V%d",ptr->data);
+ ptr=ptr->link;
+ }
+ printf("\n"); }}
+********************************OUTPUT:-**********************************
+Enter number of vertices :
+3
+Enter edge [1] (-1 -1 to quit): 1
+1
+Enter edge [2] (-1 -1 to quit): 1
+1
+Enter edge [3] (-1 -1 to quit): 1
+1
+Adjacency matrix :
+0 0 0
+0 1 0
+0 0 0
+Adjacency list :
+V0 NULL
+V1 ->V1
+V2 NULL
+
+
+
+
+
+
+***************************************************************************
+*********************************slip4(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+SUBJECT NAME:- DATA STRUCTURE
+PROGRAM NAME::- A)Write menu driven program using ‘C’ for Binary Search Tree. The menu 
+includes 
+– CreateaBinarySearchTree 
+– Traverse it by using Inorder and Postorder traversing technique [20M]
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+ int data;
+ struct BST *left;
+ struct BST *right;
+};
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+{
+ if (node == NULL)
+ {
+ NODE *temp;
+ temp= (NODE*)malloc(sizeof(NODE));
+ temp->data = data;
+ temp->left = temp->right = NULL;
+ return temp;
+ }
+ if (data < (node->data))
+ {
+ node->left = createtree(node->left, data);
+ }
+ else if (data > node->data)
+ {
+ node -> right = createtree(node->right, data);
+ }
+ return node;
+}
+void inorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ inorder(node->left);
+ printf("%d\t", node->data);
+ inorder(node->right);
+ }
+}
+void postorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ postorder(node->left);
+ postorder(node->right);
+ printf("%d\t", node->data); }}
+int main()
+{
+ int data, ch, i, n;
+ NODE *root=NULL;
+ while (ch!=4)
+ {
+ printf("\n\n1.Insertion in Binary Search Tree");
+ printf("\n2.Inorder");
+ printf("\n3.Postorder");
+ printf("\n4.Exit\n");
+ printf("\nEnter your Choice: ");
+ scanf("%d", &ch);
+ switch (ch)
+ {
+ case 1: printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the elements of tree)\n");
+ for(i=0; i<n; i++) {
+ scanf("%d", &data);
+ root=createtree(root, data); }
+ break;
+ case 2: printf("\nInorder Traversal: \n");
+ inorder(root);
+ break;
+ case 3: printf("\nPostorder Traversal: \n");
+ postorder(root); 
+ break;
+ case 4: exit(0);
+ default: printf("\nEnter valid choice\n");
+ break; } }}
+********************************OUTPUT:-**********************************
+1.Insertion in Binary Search Tree
+2.Inorder
+3.Postorder
+4.Exit
+Enter your Choice: 1
+Enter size of tree: 2
+Enter the elements of tree)
+2
+2
+1.Insertion in Binary Search Tree
+2.Inorder
+3.Postorder
+4.Exit
+Enter your Choice: 2
+Inorder Traversal:
+2
+1.Insertion in Binary Search Tree
+2.Inorder
+3.Postorder
+4.Exit
+Enter your Choice: 3
+Postorder Traversal:
+2
+
+
+
+
+
+
+***************************************************************************
+*********************************slip4(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B) Write a ‘C’ program to accept two polynomial and find the addition of 
+accepted polynomials.(usearray) [10M]
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+int main()
+{
+ int a[20]={0},b[20]={0},c[20]={0},i,j,deg1,deg2,k;
+ printf("Enter degree of 1st polynomial equation : \n");
+ scanf("%d",&deg1);
+ printf("\nEnter your 1st equation (Coefficient only):\n");
+ for(i=deg1;i>=0;i--)
+ {
+scanf("%d",&a[i]);
+ }
+ printf("\nEnter degree of 2nd polynomial equation : \n");
+ scanf("%d",&deg2);
+ printf("\nEnter your 2nd equation (Coefficient only):\n");
+ for(j=deg2;j>=0;j--)
+ {
+scanf("%d",&b[j]);
+ }
+ printf("\n1st equation : ");
+ for(i=deg1;i>=0;i--)
+ {
+if(a[i]>=0)
+{
+printf("+");
+}
+else
+{
+ printf("-");
+}
+printf("%dx^%d",abs(a[i]),i);
+ }
+ printf("\n\n2nd equation : ");
+ for(j=deg2;j>=0;j--)
+ {
+if(b[j]>=0)
+{ printf("+");}
+else
+{ printf("-");}
+printf("%dx^%d",abs(b[j]),j); }
+ i=j=k=0;
+ if(deg1>deg2)
+ {
+while(i<=deg1)
+{
+c[k]=a[i]+b[j];
+i++;
+j++;
+k++;
+}
+printf("\n\nResult of addition : ");
+for(k=deg1;k>=0;k--)
+{
+if(c[k]>=0)
+{
+printf("+");
+}
+else
+printf("-");
+printf("%dx^%d",abs(c[k]),k);
+}
+ }
+ else
+ {
+while(i<=deg2)
+{
+c[k]=b[j]+a[i];
+i++;
+j++;
+k++;
+}
+printf("\n\nResult of addition : ");
+for(k=deg2;k>=0;k--)
+{
+if(c[k]>=0)
+{
+ printf("+");
+}
+else
+printf("-");
+printf("%dx^%d",abs(c[k]),k); } } }
+********************************OUTPUT:-**********************************
+Enter degree of 1st polynomial equation :
+2
+Enter your 1st equation (Coefficient only):
+2
+2
+2
+Enter degree of 2nd polynomial equation :
+2
+Enter your 2nd equation (Coefficient only):
+2
+2
+2
+1st equation : +2x^2+2x^1+2x^0
+2nd equation : +2x^2+2x^1+2x^0
+Result of addition : +4x^2+4x^1+4x^0
+
+
+
+
+
+
+***************************************************************************
+*********************************slip5(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:-A)Write menu driven programusing ‘C’ for Binary Search Tree. The menu 
+includes
+- Create a Binary Search Tree
+- Traverse it byusing Inorder and Preorder traversing technique [20M
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+ int data;
+ struct BST *left;
+ struct BST *right;
+};
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+{
+ if (node == NULL)
+ {
+ NODE *temp;
+ temp= (NODE*)malloc(sizeof(NODE));
+ temp->data = data;
+ temp->left = temp->right = NULL;
+ return temp; }
+ if (data < (node->data))
+ {
+ node->left = createtree(node->left, data);
+ }
+ else if (data > node->data)
+ {
+ node -> right = createtree(node->right, data);
+ }
+ return node;
+}
+void inorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ inorder(node->left);
+ printf("%d\t", node->data);
+ inorder(node->right);
+ }}
+void preorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ printf("%d\t", node->data);
+ preorder(node->left);
+ preorder(node->right); 
+ }}
+int main(){
+ int data, ch, i, n;
+ NODE *root=NULL;
+ while (ch!=4)
+ {
+ printf("\n\n1.Insertion in Binary Search Tree");
+ printf("\n2.Inorder");
+ printf("\n3.Preorder");
+ printf("\n4.Exit\n");
+ printf("\nEnter your Choice: ");
+ scanf("%d", &ch);
+ switch (ch)
+ {
+ case 1: printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the elements of tree)\n");
+ for(i=0; i<n; i++)
+ {
+ scanf("%d", &data);
+ root=createtree(root, data); }
+ break;
+ case 2: printf("\nInorder Traversal: \n");
+ inorder(root);
+ break;
+ case 3: printf("\nPreorder Traversal: \n");
+ preorder(root); 
+ break;
+ case 4: exit(0);
+ default: printf("\nEnter valid choice\n");
+ break; } }}
+********************************OUTPUT:-**********************************
+1.Insertion in Binary Search Tree
+2.Inorder
+3.Preorder
+4.Exit
+Enter your Choice: 1
+Enter size of tree: 2
+Enter the elements of tree)
+2
+3
+1.Insertion in Binary Search Tree
+2.Inorder
+3.Preorder
+4.Exit
+Enter your Choice: 2
+Inorder Traversal:
+2 3
+1.Insertion in Binary Search Tree
+2.Inorder
+3.Preorder
+4.Exit
+Enter your Choice: 3
+Preorder Traversal:
+2 3
+
+
+
+
+
+
+***************************************************************************
+*********************************slip5(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:-B)Write a ‘C’ program to create linkedlist with given number in which data 
+part of each node contains individual digit of the number. (Ex.Suppose the number is 368 then the
+nodes of linked list should contain 3, 6,8) [10M]
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node * next;
+};
+struct node* head=NULL;
+struct node *cn()
+{
+ struct node* n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createnode() //Function to create Linked list.
+{
+ int i=0,x,digits[100];
+ struct node * temp,*newnode;
+ printf("Enter any number :\n");
+ scanf("%d",&x);
+ while(x!=0)
+ {
+ digits[i]=x%10;
+ x=x/10;
+ i++;
+ }
+ i--;
+ for(i;i>=0;i--)
+ {
+ if(head==NULL) //checking in linked list is empty
+ {
+ head=cn();
+ head->data=digits[i];
+ head->next=NULL;
+ temp=head;
+ }
+ else
+ { 
+ newnode=cn();
+ newnode->data=digits[i];
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode; } }}
+void traverse() .
+{
+ struct node * temp;
+ int cnt=0;
+ temp=head;
+ while(temp!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next;
+ cnt++;
+ }
+ printf("Total number of node :%d",cnt);
+}
+int main()
+{
+ int choice,a=0;
+ while(choice!=3)
+ {
+ printf("\n\n1. Create Linked list.\n");
+ printf("2. Display Linked list.\n");
+ printf("3. Exit\n\n");
+ scanf("%d",&choice);
+ printf("\n");
+ switch(choice)
+ {
+ case 1: if(a==1)
+ {
+ printf("You have already created a Linked list.");
+ }
+ else
+ { createnode();
+ a++;
+ }
+ break;
+ case 2: traverse();
+ break; 
+ case 3: exit(0);
+ defalut: printf("Enter a valid choice\n"); } }}
+********************************OUTPUT:-**********************************
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+1
+Enter any number :
+234
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+2
+2
+3
+4
+Total number of node :3
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip6(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- A)Write menu driven programusing ‘C’ for Binary Search Tree.The menu 
+includes
+- Create a Binary Search Tree 
+- Traverse it by using Preorder and Post order traversing technique [20M]
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+ int data;
+ struct BST *left;
+ struct BST *right;
+};
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+{
+ if (node == NULL)
+ {
+ NODE *temp;
+ temp= (NODE*)malloc(sizeof(NODE));
+ temp->data = data;
+ temp->left = temp->right = NULL;
+ return temp; }
+ if (data < (node->data))
+ {
+ node->left = createtree(node->left, data);
+ }
+ else if (data > node->data)
+ {
+ node -> right = createtree(node->right, data);
+ }
+ return node;
+}
+void preorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ printf("%d\t", node->data);
+ preorder(node->left);
+ preorder(node->right); 
+ }}
+void postorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ postorder(node->left);
+ postorder(node->right);
+ printf("%d\t", node->data);
+ }
+}
+int main()
+{
+ int data, ch, i, n;
+ NODE *root=NULL;
+ while (ch!=4)
+ {
+ printf("\n\n1.Insertion in Binary Search Tree");
+ printf("\n2.Preorder");
+ printf("\n3.Postorder");
+ printf("\n4.Exit\n");
+ printf("\nEnter your Choice: ");
+ scanf("%d", &ch);
+ switch (ch)
+ {
+ case 1: printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the elements of tree)\n");
+ for(i=0; i<n; i++)
+ {
+ scanf("%d", &data);
+ root=createtree(root, data);
+ }
+ break;
+ case 2: printf("\nPreorder Traversal: \n");
+ preorder(root); 
+ break;
+ case 3: printf("\nPostorder Traversal: \n");
+ postorder(root); 
+ break;
+ case 4: exit(0);
+ default: printf("\nEnter valid choice\n");
+ break; } }}
+********************************OUTPUT:-**********************************
+1.Insertion in Binary Search Tree
+2.Preorder
+3.Postorder
+4.Exit
+Enter your Choice: 1
+Enter size of tree: 2
+Enter the elements of tree)
+5
+6
+1.Insertion in Binary Search Tree
+2.Preorder
+3.Postorder
+4.Exit
+Enter your Choice: 2
+Preorder Traversal:
+5 6
+1.Insertion in Binary Search Tree
+2.Preorder
+3.Postorder
+4.Exit
+Enter your Choice: 3
+Postorder Traversal:
+6 5
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip6(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B)Write a ‘C’ program to accept and sortn elements in ascending order by 
+using bubble sort. [10M]
+***************************************************************************
+#include<stdio.h>
+void bubble_sort(int [],int);
+int main()
+{
+ int A[20],temp,i,j,n;
+ printf("Enter size of Array :\n");
+ scanf("%d",&n);
+ printf("\nEnter Array elements :\n");
+ for(i=0;i<n;i++)
+ {
+ scanf("%d",&A[i]);
+ }
+ bubble_sort(A,n);
+ printf("\nSorted Array :\n");
+ for(i=0;i<n;i++)
+ {
+ printf("%d\n",A[i]);
+ }}
+void bubble_sort(int A[],int n)
+{
+ int i,j,temp;
+ for(i=1;i<n;i++)
+ {
+ for(j=0;j<n-i;j++)
+ {
+ if(A[j]>A[j+1])
+ {
+ temp=A[j];
+ A[j]=A[j+1];
+ A[j+1]=temp;
+ } } }}
+*******************************OUTPUT:-**********************************
+Enter size of Array :
+3
+Enter Array elements : *
+3
+3
+4
+
+
+
+
+***************************************************************************
+*********************************slip7(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:-A)Write menu driven program using ‘C’ for Binary Search Tree.The menu 
+includes
+- Create a Binary Search Tree
+- Display – Delete a given element from Binary Search Tree [20M]
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+ int data;
+ struct BST *left;
+ struct BST *right;
+};
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+{
+ if (node == NULL)
+ {
+ NODE *temp;
+ temp= (NODE*)malloc(sizeof(NODE));
+ temp->data = data;
+ temp->left = temp->right = NULL;
+ return temp;
+ }
+ if (data < (node->data))
+ {
+ node->left = createtree(node->left, data);
+ }
+ else if (data > node->data)
+ {
+ node -> right = createtree(node->right, data);
+ }
+ return node;
+}
+void inorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ inorder(node->left);
+ printf("%d\t", node->data);
+ inorder(node->right);
+ }}
+void preorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ printf("%d\t", node->data);
+ preorder(node->left);
+ preorder(node->right); 
+ }}
+void postorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ postorder(node->left);
+ postorder(node->right);
+ printf("%d\t", node->data);
+ }}
+NODE* findMin(NODE *node)
+{
+ if(node==NULL)
+ {
+ return NULL;
+ }
+ if(node->left)
+ return findMin(node->left);
+ else
+ return node;
+}
+NODE* del(NODE *node, int data)
+{
+ NODE *temp;
+ if(node == NULL)
+ {
+ printf("\nElement Not Found...!\n");
+ }
+ else if(data < node->data)
+ {
+ node->left = del(node->left, data);
+ }
+ else if(data > node->data)
+ {
+ node->right = del(node->right, data);
+ }
+ else
+ {
+ if(node->right && node->left)
+ {
+ temp = findMin(node->right);
+ node -> data = temp->data;
+ node -> right = del(node->right,temp->data);
+ }
+ else
+ {
+ temp = node;
+ if(node->left == NULL)
+ node = node->right;
+ else if(node->right == NULL)
+ node = node->left;
+ free(temp); } }
+ return node;}
+int main()
+{
+ int data, ch, i, n;
+ NODE *root=NULL;
+ while (ch!=6)
+ { printf("\n\n1.Insertion in Binary Search Tree");
+ printf("\n2.Delete Element in Binary Search Tree");
+ printf("\n3.Inorder");
+ printf("\n4.Preorder");
+ printf("\n5.Postorder");
+ printf("\n6.Exit\n");
+ printf("\nEnter your Choice: ");
+ scanf("%d", &ch);
+ switch (ch)
+ {
+ case 1: printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the elements of tree)\n");
+ for(i=0; i<n; i++)
+ {
+ scanf("%d", &data);
+ root=createtree(root, data); }
+ break;
+ case 2: printf("\nEnter the Element to Delete: ");
+ scanf("%d", &data);
+ root=del(root, data);
+ break;
+ case 3: printf("\nInorder Traversal: \n");
+ inorder(root);
+ break;
+ case 4: printf("\nPreorder Traversal: \n");
+ preorder(root); 
+ break;
+ case 5: printf("\nPostorder Traversal: \n");
+ postorder(root); 
+ break;
+ case 6: exit(0);
+ default: printf("\nEnter valid choice\n");
+ break; } }}
+*******************************OUTPUT:-**********************************
+1.Insertion in Binary Search Tree
+2.Delete Element in Binary Search Tree
+3.Inorder
+4.Preorder
+5.Postorder
+6.Exit
+Enter your Choice: 1
+Enter size of tree: 4
+Enter the elements of tree)
+1
+1
+1
+1
+1.Insertion in Binary Search Tree
+2.Delete Element in Binary Search Tree
+3.Inorder
+4.Preorder
+5.Postorder
+6.Exit
+Enter your Choice: 2
+Enter the Element to Delete: 1
+
+
+
+
+
+***************************************************************************
+*********************************slip7(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B)Write a ‘C’ program to create asingly linked list and count total number 
+of nodes in it and display the list and total number of Node
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node * next;
+};
+struct node* head=NULL;
+struct node *cn()
+{
+ struct node* n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createnode() //Function to create Linked list.
+{
+ int i,n,x;
+ struct node * temp,*newnode;
+ printf("Enter size of linked list :\n");
+ scanf("%d",&n);
+ printf("Enter elements of linked list :\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(head==NULL) //checking in linked list is empty
+ {
+ head=cn();
+ head->data=x;
+ head->next=NULL;
+ temp=head;
+ }
+ else
+ { 
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode;} }}
+void traverse() 
+{
+ struct node * temp;
+ int cnt=0;
+ temp=head;
+ while(temp!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next;
+ cnt++;
+ }
+ printf("Total number of node :%d",cnt);
+}
+int main()
+{
+ int choice,a=0;
+ while(choice!=3)
+ {
+ printf("\n\n1. Create Linked list.\n");
+ printf("2. Display Linked list.\n");
+ printf("3. Exit\n\n");
+ scanf("%d",&choice);
+ printf("\n");
+ switch(choice)
+ {
+ case 1: if(a==1)
+ {
+ printf("You have already created a Linked list.");
+ }
+ else
+ { createnode();
+ a++;
+ }
+ break;
+ case 2: traverse();
+ break;
+ case 3: exit(0);
+ defalut: printf("Enter a valid choice\n"); } }}
+*******************************OUTPUT:-**********************************
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+1
+Enter size of linked list :
+2
+Enter elements of linked list :
+4
+5
+1. Create Linked list.
+2. Display Linked list.
+3. Exit
+2
+4
+5
+Total number of node :2
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip8(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- A)Write menu driven program using ‘C’ for Binary Search Tree .The menu 
+includes
+- Create a Binary Search Tree
+- Display 
+Search the element in Binary Search Tree
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+struct BST
+{
+ int data;
+ struct BST *left;
+ struct BST *right;
+};
+typedef struct BST NODE;
+NODE *node;
+NODE* createtree(NODE *node, int data)
+{
+ if (node == NULL)
+ {
+ NODE *temp;
+ temp= (NODE*)malloc(sizeof(NODE));
+ temp->data = data;
+ temp->left = temp->right = NULL;
+ return temp;
+ }
+ if (data < (node->data))
+ {
+ node->left = createtree(node->left, data);
+ }
+ else if (data > node->data)
+ {
+ node -> right = createtree(node->right, data);
+ }
+ return node;
+}
+NODE* search(NODE *node, int data)
+{
+ if(node == NULL)
+ printf("\nElement Not Found...!/n"); 
+ else if(data < node->data)
+ {
+ node->left=search(node->left, data);
+ }
+ else if(data > node->data)
+ {
+ node->right=search(node->right, data);
+ }
+ else
+ printf("\nElement Found is: %d", node->data);
+ return node;
+}
+void inorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ inorder(node->left);
+ printf("%d\t", node->data);
+ inorder(node->right);
+ }}
+void preorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ printf("%d\t", node->data);
+ preorder(node->left);
+ preorder(node->right); 
+ }}
+void postorder(NODE *node)
+{
+ if(node != NULL)
+ {
+ postorder(node->left);
+ postorder(node->right);
+ printf("%d\t", node->data);
+ }}
+int main()
+{
+ int data, ch, i, n;
+ NODE *root=NULL;
+ while (ch!=6)
+ {
+ printf("\n\n1.Insertion in Binary Search Tree");
+ printf("\n2.Delete Element in Binary Search Tree");
+ printf("\n3.Inorder");
+ printf("\n4.Preorder");
+ printf("\n5.Postorder");
+ printf("\n6.Exit\n");
+ printf("\nEnter your Choice: ");
+ scanf("%d", &ch);
+ switch (ch)
+ {
+ case 1: printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the elements of tree)\n");
+ for(i=0; i<n; i++)
+ {
+ scanf("%d", &data);
+ root=createtree(root, data);
+ }
+ break;
+ case 2: printf("\nEnter the Element to Search: ");
+ scanf("%d", &data);
+ root=search(root, data);
+ break;
+ case 3: printf("\nInorder Traversal: \n");
+ inorder(root);
+ break;
+ case 4: printf("\nPreorder Traversal: \n");
+ preorder(root); 
+ break;
+ case 5: printf("\nPostorder Traversal: \n");
+ postorder(root); 
+ break;
+ case 6: exit(0);
+ default: printf("\nEnter valid choice\n");
+ break;
+ }}}
+*******************************OUTPUT:-**********************************
+Enter size of array :
+3
+Enter array elements :
+12
+12
+12
+Sorted Array :
+12
+12
+12
+
+
+
+
+
+***************************************************************************
+*********************************slip8(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME:- B)Write a ‘C’ program to accept and sortn elements in ascending order by 
+using insertion sort. [10M]
+***************************************************************************
+#include<stdio.h>
+void insertionsort(int [],int);
+int main()
+{
+ int A[30],i,j,n,temp;
+ printf("Enter size of array :\n");
+ scanf("%d",&n);
+ printf("Enter array elements :\n");
+ for(i=0;i<n;i++)
+ {
+ scanf("%d",&A[i]);
+ }
+ insertionsort(A,n); 
+ printf("Sorted Array :\n");
+ for(i=0;i<n;i++)
+ {
+ printf("%d\n",A[i]);
+ } 
+}
+void insertionsort(int A[],int n)
+{
+ int i,j,temp;
+ for(i=1;i<n;i++)
+ {
+ temp=A[i];
+ j=i-1;
+ 
+ while(temp<A[j] && j>=0)
+ {
+ A[j+1]=A[j];
+ j=j-1;
+ }
+ A[j+1]=temp;
+ }
+}
+*******************************OUTPUT:-**********************************
+Enter size of array :
+4
+Enter array elements :
+22
+23
+24
+25
+Sorted Array :
+22
+23
+24
+25
+
+
+
+
+
+
+***************************************************************************
+*********************************slip9(A)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a program to accept a postfix expression and evaluate the 
+expression using the stack. Example: Input: ab+cd-* Values: a=4, b=2, c=5, d=3 Answer: 12
+***************************************************************************
+#include<stdio.h>
+#include<ctype.h>
+int stack[20];
+int top = -1;
+void push(int x)
+{
+ stack[++top] = x;}
+int pop()
+{
+ return stack[top--];}
+int main()
+{
+ char exp[20];
+ char *e;
+ int n1,n2,n3,num;
+ printf("Enter the expression :: ");
+ scanf("%s",exp);
+ e = exp;
+ while(*e != '\0')
+ {
+ if(isdigit(*e))
+ {
+ num = *e - 48;
+ push(num); }
+ else
+ {
+ n1 = pop();
+ n2 = pop();
+ switch(*e)
+ {
+ case '+':
+ {
+ n3 = n1 + n2;
+ break; }
+ case '-':
+ {
+ n3 = n2 - n1;
+ break; }
+ case '*':
+ {
+ n3 = n1 * n2;
+ break; }
+ case '/':
+ {
+ n3 = n2 / n1;
+ break;
+ } }
+ push(n3); }
+ e++; }
+ printf("\nThe result of expression %s = %d\n\n",exp,pop());
+ return 0;}
+*******************************OUTPUT:-**********************************
+Enter the expression :: 1234567
+The result of expression 1234567 = 7
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip9(B)***********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to create a singly linked list, reverse it and display 
+both the list.
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *next; };
+struct node *head=NULL;
+struct node *cn()
+{
+ struct node *n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);}
+void createnode(int n) 
+{
+ int i,x;
+ struct node * temp,*newnode;
+ printf("Enter elements of linked list :\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(head==NULL) 
+ {
+ head=cn();
+ head->data=x;
+ head->next=NULL;
+ temp=head; }
+ else
+ { 
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode;
+ } }}
+void display()
+{
+ struct node *temp;
+ temp=head;
+ while (temp!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next; }}
+void reverselist()
+{
+ struct node *prev,*cur;
+ prev=head;
+ head=head->next;
+ cur=head;
+ prev->next=NULL;
+ while (head!=NULL)
+ {
+ head=head->next;
+ cur->next=prev;
+ prev=cur;
+ cur=head; }
+ head=prev; 
+int main()
+{
+ int n;
+ printf("Enter size of Linked list\n");
+ scanf("%d",&n);
+ createnode(n);
+ printf("Displaying list:\n");
+ display();
+ printf("\nReverse list is :\n");
+ reverselist();
+ display();
+}
+*******************************OUTPUT:-**********************************
+Enter size of Linked list
+3
+Enter elements of linked list :
+12
+23
+78
+Displaying list:
+12
+23
+78
+Reverse list is :
+78
+23
+12
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip10(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program to read ‘n’ integers and store them in a Binary 
+search tree and display the nodes level wise.
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+int data;
+struct node* left, *right;
+};
+struct node *node;
+struct node *newnode(int data)
+{
+ struct node *temp;
+ temp= (struct node*)malloc(sizeof(struct node));
+ temp->data = data;
+ temp->left = NULL;temp->right = NULL;
+ return temp;
+}
+struct node *insertLevelOrder(int arr[],struct node *root,int i,int n)
+{
+ if(i<n)
+ {
+ struct node *temp=newnode(arr[i]);
+ root=temp;
+ root->left=insertLevelOrder(arr,root->left,(2*i)+1,n);
+ root->right=insertLevelOrder(arr,root->right,(2*i)+2,n);
+ }
+ return root;
+}
+void printGivenLevel(struct node* root, int level);
+int height(struct node* node);
+struct node* newNode(int data);
+void printLevelOrder(struct node* root)
+{
+int h = height(root);
+int i;
+for (i=1; i<=h; i++)
+ {
+printGivenLevel(root, i);
+ printf("\n");
+ }}
+void printGivenLevel(struct node* root, int level)
+{
+if (root == NULL)
+return;
+if (level == 1)
+printf("%d ", root->data);
+else if (level > 1)
+{
+printGivenLevel(root->left, level-1);
+printGivenLevel(root->right, level-1); }}
+int height(struct node* node)
+{
+if (node==NULL)
+return 0;
+else
+{
+int lheight = height(node->left);
+int rheight = height(node->right);
+if (lheight > rheight)
+return(lheight+1);
+else return(rheight+1);
+}}
+struct node* newNode(int data)
+{
+struct node* node = (struct node*)
+malloc(sizeof(struct node));
+node->data = data;
+node->left = NULL;
+node->right = NULL;
+return(node);
+}
+int main()
+{
+struct node *root = NULL;
+ int n,arr[50],i;
+printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the Values to Create Binary tree\n");
+ for(i=0; i<n; i++)
+ {
+ scanf("%d",&arr[i]); 
+ }
+ root=insertLevelOrder(arr,root,0,n);
+printf("Level Order traversal of binary tree is \n");
+printLevelOrder(root);
+return 0;
+}
+*******************************OUTPUT:-**********************************
+Enter size of tree: 4
+Enter the Values to Create Binary tree
+3
+1
+1
+1
+Level Order traversal of binary tree is
+3
+1 1
+1
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip10(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to sort randomly generated array elements using 
+Insertion sort method. (Use Random Function)
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+void insertionsort(int [],int);
+void array(int [],int);
+int main()
+{
+ int A[30],n,i;
+ printf("Enter size of array :\n");
+ scanf("%d",&n);
+ array(A,n);
+ insertionsort(A,n); 
+ printf("\nSorted Array :\n");
+ for(i=0;i<n;i++)
+ {
+ printf("%d\n",A[i]);
+ } 
+}
+void insertionsort(int A[],int n)
+{
+ int i,j,temp;
+ for(i=1;i<n;i++)
+ {
+ temp=A[i];
+ j=i-1;
+ 
+ while(temp<A[j] && j>=0)
+ {
+ A[j+1]=A[j];
+ j=j-1;
+ }
+ A[j+1]=temp;
+ }
+}
+void array(int A[],int n)
+{
+ int i;
+ srand(time(0));
+ for(i = 0; i<n; i++)
+ {
+ A[i]=rand();
+ }
+ printf("Array :\n");
+ for(i = 0; i<n; i++)
+ {
+ printf("%d ",A[i]);
+ }
+ printf("\n");
+}
+*******************************OUTPUT:-**********************************
+Enter size of array :
+5
+Array :
+8557 10473 17481 26787 13401
+Sorted Array :
+8557
+10473
+13401
+17481
+26787
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip11(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a menu driven program using ‘C’ for singly linked list- - To create 
+linked list. - To display linked list - To search node in linked list. - Insert at last position
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node * next;
+};
+struct node* head=NULL;
+struct node *cn()
+{
+ struct node* n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createnode() .
+{
+ int i,n,x;
+ struct node * temp,*newnode;
+ printf("Enter size of linked list :\n");
+ scanf("%d",&n);
+ printf("Enter elements of linked list :\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(head==NULL) 
+ {
+ head=cn();
+ head->data=x;
+ head->next=NULL;
+ temp=head;
+ }
+ else
+ { 
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode; } }}
+void traverse() 
+{
+ struct node * temp;
+ temp=head;
+ while(temp!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next;
+ }
+}
+void insertnode() {
+ struct node * temp,*newnode;
+ int pos,i=1,x;
+ printf("Enter position for insertion of new node :\n");
+ scanf("%d",&pos);
+ printf("Enter value for that node :\n");
+ scanf("%d",&x);
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp=head;
+ if(head==NULL) 
+ {
+ head=newnode;
+ head->next=NULL;
+ }
+ if(pos==1)
+ {
+ newnode->next=head;
+ head=newnode;
+ }
+ else
+ {
+ while((i<pos-1)&&(temp!=NULL))
+ {
+ temp=temp->next;
+ i++;
+ }
+ if(temp==NULL)
+ {
+ printf("Position out of bound.\n");
+ }
+ else
+ {
+ newnode->next=temp->next;
+ temp->next=newnode;
+ } }
+ printf("node inserted\n");
+}
+void search() 
+{
+ struct node * temp;
+ int key,i=1,flag=0;
+ printf("Enter element you want to search :\n");
+ scanf("%d",&key);
+ temp=head;
+ if(head==NULL)
+ {
+ printf("Linked list is empty. \n");
+ }
+ else 
+ {
+ while(temp!=NULL)
+ {
+ if(key==temp->data)
+ {
+ flag=1;
+ break; }
+ temp=temp->next;
+ i++;
+ }
+ }
+ if(flag==0)
+ {
+ printf("Elemet not found.\n");
+ }
+ else
+ {
+ printf("Element found at position :%d",i);
+ }
+}
+int main()
+{
+ int choice,a=0;
+ while(choice!=5)
+ {
+ printf("\n\n1. Create Linked list.\n");
+ printf("2. Display Linked list.\n");
+ printf("3. Insert node at any position.\n");
+ printf("4. Search.\n");
+ printf("5. Exit\n\n");
+ scanf("%d",&choice);
+ printf("\n");
+ switch(choice)
+ {
+ case 1: if(a==1)
+ {
+ printf("You have already created a Linked list.");
+ }
+ else
+ { createnode();
+ a++;
+ }
+ break;
+ case 2: traverse();
+ break;
+ case 3: insertnode();
+ break;
+ case 4: search();
+ break;
+ case 5: exit(0);
+ defalut: printf("Enter a valid choice\n");
+ } }}
+*******************************OUTPUT:-**********************************
+1. Create Linked list.
+2. Display Linked list.
+3. Insert node at any position.
+4. Search.
+5. Exit
+1
+Enter size of linked list :
+3
+Enter elements of linked list :
+11
+22
+33
+
+
+
+
+
+
+***************************************************************************
+*********************************slip11(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a menu driven program using ‘C’ for Dynamic implementation of 
+Queue for integers. The menu includes
+- Insert
+- Delete 
+- Display 
+- Exit
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node *next; 
+};
+struct node *front=NULL;
+struct node *rear=NULL;
+struct node *cn()
+{
+ struct node *n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createqueue()
+{
+ int n,x,i;
+ struct node *newnode;
+ printf("Enter size of queue :\n");
+ scanf("%d",&n);
+ printf("Enter elements of queue :\n");;
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(front==NULL)
+ {
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ front=newnode;
+ rear=newnode;
+ }
+ else
+ {
+ newnode=cn();
+ newnode->data=x;
+ rear->next=newnode;
+ newnode->next=NULL;
+ rear=newnode; } }}
+void insert()
+{
+ struct node *newnode;
+ int x;
+ printf("Enter element:\n");
+ scanf("%d",&x);
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ if(front==NULL)
+ {
+ front=newnode;
+ rear=newnode;
+ }
+ else
+ {
+ rear->next=newnode;
+ rear=newnode;
+ }
+ printf("Element inserted successfully");
+}
+int delete()
+{
+ struct node *temp;
+ if(front==NULL)
+ {
+ printf("Queue is empty.\n");
+ }
+ else
+ {
+ temp=front;
+ front=front->next;
+ temp->next=NULL;
+ free(temp);
+ }
+ printf("Element deleted successfully");
+}
+void display()
+{
+ struct node *temp;
+ temp=front;
+ printf("\n");
+ while(temp->next!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next;
+ }
+ printf("%d\n",temp->data);
+}
+void main()
+{
+ int choice,a=0;
+ while(choice!=5)
+ {
+ printf("\n\n1. Create queue\n");
+ printf("2. Insert\n");
+ printf("3. Delete\n");
+ printf("4. Display\n");
+ printf("5. Exit\n\n");
+ scanf("%d",&choice);
+ switch(choice)
+ {
+ case 1: if(a==1)
+ {
+ printf("You have already create queue.\n");
+ }
+ else
+ {
+ createqueue();
+ a=1;
+ }
+ break;
+ case 2: insert();
+ break;
+ 
+ case 3: delete();
+ break;
+ 
+ case 4: display();
+ break;
+ 
+ case 5: exit(0);
+ deafult:printf("Enter valid choice."); } }
+}
+*******************************OUTPUT:-**********************************
+1:insert
+2:delete
+3:display
+4:exit
+enter your choice:-1
+enter the element:-6
+do you want to continue(Y|N):-y
+enter your choice:-2
+the deleted element is :-6
+do you want to continue(Y|N):-y
+1:insert
+2:delete
+3:display
+4:exit
+enter your choice:-3
+the element in Queue are:-
+7
+4
+
+
+
+
+
+
+
+
+
+**************************************************************************
+*********************************slip12(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a C program that accepts the graph as an adjacency matrix and 
+checks if the graph is undirected. The matrix for an undirected graph is symmetric. Also calculate in 
+degree of all vertices
+- Read a graph as adjacency Matrix
+- Check the matrix is symmetric or not 
+- Calculate indegree of all vertices
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+int n,g[10][10];
+void inoutdegree()
+{ 
+ int i,j,id=0,od=0;
+ for(i=0;i<n;i++)
+ {
+ for(j=0;j<n;j++)
+ {
+ od+=g[i][j];
+ id+=g[j][i]; }
+ printf("v%d indegree =%d \t Outdegree= %d\n",i,id,od); }
+}
+int main()
+{ 
+ int i,j,cnt=0;
+ printf("How many vertices:\n");
+ scanf("%d",&n);
+ printf("Enter matrix elements:\n");
+ for(i=0;i<n;i++)
+ { 
+ for(j=0;j<n;j++)
+ { 
+ scanf("%d",&g[i][j]);
+ } }
+ printf("\nAdjacency matrix Is:\n");
+ for(i=0;i<n;i++)
+ { 
+ for(j=0;j<n;j++)
+ { 
+ if(g[i][j]!=g[j][i])
+ cnt++;
+ printf("%d\t",g[i][j]);
+ }
+ printf("\n");
+ }
+ if(cnt!=0)
+ {
+ printf("\nGiven graph is Directed\n\n");
+ inoutdegree();
+ }
+ else
+ {
+ printf("Graph is undirected\n\n");
+ }
+ return 0;
+}
+*******************************OUTPUT:-**********************************
+How many vertices:
+5
+Enter matrix elements:
+1
+2
+3
+4
+5
+6
+7
+8
+9
+harsahd
+Adjacency matrix Is:
+1 2 3 4 5
+6 7 8 9 0
+0 0 0 0 0
+0 0 0 0 0
+0 0 0 0 0
+Given graph is Directed
+v0 indegree =7 Outdegree= 15
+v1 indegree =16 Outdegree= 45
+v2 indegree =27 Outdegree= 45
+v3 indegree =40 Outdegree= 45
+v4 indegree =45 Outdegree= 45
+
+
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip12(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to accept and sort n elements in ascending order 
+using Selection sort method.
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+void selection_sort(int [],int);
+int main()
+{
+ int A[20],i,j,min,n,temp;
+ printf("Enter size of array :\n");
+ scanf("%d",&n);
+ printf("Enter array elements :\n");
+ for(i=0;i<n;i++)
+ {
+ scanf("%d",&A[i]);
+ }
+ selection_sort(A,n);
+ 
+ printf("Sorted Array :\n");
+ for(i=0;i<n;i++)
+ {
+ printf("%d\n",A[i]);
+ }
+}
+void selection_sort(int A[],int n)
+{
+ int i,min,j,temp;
+ for(i=0;i<n;i++)
+ {
+ min=i;
+ for(j=i+1;j<n;j++)
+ {
+ if(A[j]<A[min])
+ {
+ min=j;
+ }
+ }
+ temp=A[i];
+ A[i]=A[min];
+ A[min]=temp;
+ }
+}
+*******************************OUTPUT:-**********************************
+Enter size of array :
+3
+Enter array elements :
+5
+1
+2
+Sorted Array :
+1
+2
+5
+
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip13(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a C program to accept an infix expression and convert it into 
+postfix form. (Use Static Implementation of Stack) 
+Example: - A * B + C as AB*C+
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h> 
+#include<ctype.h> 
+#include<string.h>
+#define SIZE 100
+char stack[SIZE];
+int top = -1;
+void push(char item)
+{
+if(top >= SIZE-1)
+{
+printf("\nStack Overflow.");
+}
+else
+{
+top = top+1;
+stack[top] = item;
+}
+}
+char pop()
+{
+char item ;
+if(top <0)
+{
+printf("stack under flow: invalid infix expression");
+getchar();
+exit(1);
+}
+else
+{
+item = stack[top];
+top = top-1;
+return(item);
+}
+}
+int is_operator(char symbol)
+{
+if(symbol == '^' || symbol == '*' || symbol == '/' || symbol == '+' || symbol =='-')
+{
+return 1;
+}
+else
+{
+return 0;
+}
+}
+int precedence(char symbol)
+{
+if(symbol == '^')
+{
+return(3);
+}
+else if(symbol == '*' || symbol == '/')
+{
+return(2);
+}
+else if(symbol == '+' || symbol == '-') 
+{
+return(1);
+}
+else
+{
+return(0);
+}
+}
+void InfixToPostfix(char infix_exp[], char postfix_exp[])
+{ 
+int i, j;
+char item;
+char x;
+push('('); 
+strcat(infix_exp,")"); 
+i=0;
+j=0;
+item=infix_exp[i]; 
+while(item != '\0') 
+{
+if(item == '(')
+{
+push(item);
+}
+else if( isdigit(item) || isalpha(item))
+{
+postfix_exp[j] = item; 
+j++;
+}
+else if(is_operator(item) == 1) 
+{
+x=pop();
+while(is_operator(x) == 1 && precedence(x)>= precedence(item))
+{
+postfix_exp[j] = x; 
+j++;
+x = pop(); 
+}
+push(x);
+push(item); }
+else if(item == ')') 
+{
+x = pop(); 
+while(x != '(') {
+postfix_exp[j] = x;
+j++;
+x = pop();
+}
+}
+else
+{ 
+printf("\nInvalid infix Expression.\n"); 
+ getchar();
+exit(1);
+}
+i++;
+item = infix_exp[i]; 
+if(top>0)
+{
+printf("\nInvalid infix Expression.\n"); 
+getchar();
+exit(1);
+}
+if(top>0)
+{
+printf("\nInvalid infix Expression.\n"); 
+getchar();
+exit(1);
+}
+postfix_exp[j] = '\0'; 
+}
+printf("ASSUMPTION: The infix expression contains single letter variables and 
+single digit constants only.\n");
+printf("\nEnter Infix expression : ");
+gets(infix);
+InfixToPostfix(infix,postfix); 
+printf("Postfix Expression: ");
+puts(postfix); 
+return 0;
+}
+*******************************OUTPUT:-**********************************
+ASSUMPTION: The infix expression contains single letter variables and single digit 
+constants only.
+Enter Infix expression : 2*4+3
+Postfix Expression: 24*3+
+
+
+
+
+***************************************************************************
+*********************************slip13(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to create doubly link list and display nodes having 
+odd value
+***************************************************************************
+#include<stdlib.h>
+#include<stdio.h>
+struct node
+{
+ int data;
+ struct node * prev,*next;
+};
+struct node *head=NULL;
+struct node * cn()
+{
+ struct node * n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return (n);
+}
+void createnode()
+{
+ int i,n,x;
+ struct node *temp,*newnode;
+ printf("Enter size of linked list:\n");
+ scanf("%d",&n);
+ printf("Enter elements of linked list:\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(head==NULL)
+ {
+ head=cn();
+ head->data=x;
+ head->next=NULL;
+ head->prev=NULL;
+ temp=head;
+ }
+ else
+ {
+ newnode=cn();
+ newnode->data=x;
+ newnode->prev=temp;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode;
+ }
+ 
+ }
+}
+void display()
+{
+ struct node * temp;
+ printf("\n");
+ if(head==NULL)
+ {
+ printf("List is empt.\n"); 
+ }
+ else
+ {
+ temp=head;
+ while(temp->next!=NULL)
+ {
+ if(temp->data%2==1)
+ {
+ printf("%d\n",temp->data);
+ }
+ temp=temp->next;
+ }
+ printf("%d\n",temp->data);
+ }
+}
+ 
+int main()
+{
+ int choice,a=0;
+ while(choice!=4)
+ {
+ printf("\n\n1. Create Linked list.\n");
+ printf("2. Display.\n");
+ printf("3. Exit.\n\n");
+ scanf("%d",&choice);
+ 
+ switch(choice)
+ {
+ case 1: if(a==1)
+ {
+ printf("You have already created a Linked list.\n");
+ }
+ else
+ { createnode();
+ a++;
+ }
+ break;
+ case 2: display();
+ break;
+ case 3: exit(0);
+ defalut: printf("Enter a valid choice\n");
+ } }}
+*******************************OUTPUT:-**********************************
+1. Create Linked list.
+2. Display.
+3. Exit.
+1
+Enter size of linked list:
+5
+Enter elements of linked list:
+8
+9
+5
+6
+3
+1. Create Linked list.
+2. Display.
+3. Exit.
+2
+9
+5
+3
+
+
+
+
+***************************************************************************
+*********************************slip14(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program to accept a string from a user and reverse it using 
+Dynamic implementation of Stack.
+***************************************************************************
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <limits.h>
+# define MAX 50
+struct Stack
+{
+ int top;
+ unsigned size;
+ char* array;
+};
+struct Stack* createStack(unsigned size)
+{
+ struct Stack* stack = (struct Stack*) malloc(sizeof(struct Stack));
+ stack->size = size;
+ stack->top = -1;
+ stack->array = (char*) malloc(stack->size * sizeof(char));
+ return stack;
+}
+int isFull(struct Stack* stack)
+{ return stack->top == stack->size - 1; }
+int isEmpty(struct Stack* stack)
+{ return stack->top == -1; }
+void push(struct Stack* stack, char item)
+{
+ if (isFull(stack))
+ return;
+ stack->array[++stack->top] = item;
+}
+char pop(struct Stack* stack)
+{
+ if (isEmpty(stack))
+ return 0;
+ return stack->array[stack->top--];
+}
+void reverse(char str[])
+{
+ 
+ int n = strlen(str);
+ struct Stack* stack = createStack(n);
+ 
+ int i;
+ for (i = 0; i < n; i++)
+ push(stack, str[i]); 
+ 
+ for (i = 0; i < n; i++)
+ str[i] = pop(stack);
+}
+int main()
+{
+int i,len;
+ char str[MAX] ;
+ 
+ printf("Enter the string\n");
+ scanf("%s",str);
+ len=strlen(str);
+ for(i=0; i<len; i++)
+ {
+ reverse(str);
+}
+ 
+ printf("Reversed string is %s", str);
+ return 0;
+}
+*******************************OUTPUT:-**********************************
+Enter the string
+harshad
+Reversed string is dahsrah
+
+
+
+
+
+***************************************************************************
+*********************************slip14(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B)Write a ‘C’ program to accept names from the user and sort in 
+alphabetical order using bubble sort
+- Accept n name
+- Bubble sort Function 
+- Display
+***************************************************************************
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+ char name[25][50],temp[25];
+ int n,i,j;
+ 
+ printf("\n\nSorts the strings of an array using bubble sort :\n");
+ printf("-----------------------------------------------------\n"); 
+ 
+ printf("Input number of strings :");
+ scanf("%d",&n);
+printf("Input string %d :\n",n);
+ for(i=0;i<=n;i++)
+ {
+ 
+ fgets(name[i], sizeof name, stdin);
+ }
+ /*Logic Bubble Sort*/
+ for(i=1;i<=n;i++)
+for(j=0;j<=n-i;j++)
+ if(strcmp(name[j],name[j+1])>0)
+ { 
+ strcpy(temp,name[j]);
+ strcpy(name[j],name[j+1]);
+ strcpy(name[j+1],temp);
+ }
+ printf("The strings appears after sorting :\n");
+ for(i=0;i<=n;i++)
+printf("%s\n",name[i]);
+}
+*******************************OUTPUT:-**********************************
+Sorts the strings of an array using bubble sort :
+-----------------------------------------------------
+Input number of strings :5
+Input string 5 :
+1
+2
+3
+6
+4
+The strings appears after sorting :
+1
+2
+3
+4
+6
+
+
+
+
+
+***************************************************************************
+*********************************slip15(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program to accept an infix expression, convert it into its 
+equivalent postfix expression and display the result.(Use Dynamic Implementation of Stack)
+***************************************************************************
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#define MAX 50
+struct Stack
+{
+ int top;
+ unsigned capacity;
+ int* array;
+};
+struct Stack* createStack( unsigned capacity )
+{
+ struct Stack* stack = (struct Stack*)
+ malloc(sizeof(struct Stack));
+ if (!stack)
+ return NULL;
+ stack->top = -1;
+ stack->capacity = capacity;
+ stack->array = (int*) malloc(stack->capacity *
+ sizeof(int));
+ return stack;
+}
+int isEmpty(struct Stack* stack)
+{
+ return stack->top == -1 ;
+}
+char peek(struct Stack* stack)
+{
+ return stack->array[stack->top];
+}
+char pop(struct Stack* stack)
+{
+ if (!isEmpty(stack))
+ return stack->array[stack->top--] ;
+ return '$';
+}
+void push(struct Stack* stack, char op)
+{
+stack->array[++stack->top] = op;
+}
+int isOperand(char ch)
+{
+ return (ch >= 'a' && ch <= 'z') ||
+ (ch >= 'A' && ch <= 'Z');
+}
+int Prec(char ch)
+{
+ switch (ch)
+ {
+ case '+':
+ case '-':
+ return 1;
+ case '*':
+ case '/':
+ return 2;
+ case '^':
+ return 3;
+ }
+ return -1;
+}
+int infixToPostfix(char* exp)
+{
+ int i, k;
+ struct Stack* stack = createStack(strlen(exp));
+ if(!stack) 
+ return -1 ;
+ for (i = 0, k = -1; exp[i]; ++i)
+ {
+ 
+ 
+ if (isOperand(exp[i]))
+ exp[++k] = exp[i];
+ 
+ 
+ else if (exp[i] == '(')
+ push(stack, exp[i]);
+ 
+ 
+ else if (exp[i] == ')')
+ {
+ while (!isEmpty(stack) && peek(stack) != '(')
+ exp[++k] = pop(stack);
+ if (!isEmpty(stack) && peek(stack) != '(')
+ return -1; 
+ else
+ pop(stack);
+ }
+ else 
+ {
+ while (!isEmpty(stack) &&
+ Prec(exp[i]) <= Prec(peek(stack)))
+ exp[++k] = pop(stack);
+ push(stack, exp[i]);
+ }
+ }
+ 
+ while (!isEmpty(stack))
+ exp[++k] = pop(stack );
+ exp[++k] = '\0';
+ printf( "%s", exp );
+}
+int main()
+{
+ char exp[MAX] ;
+ printf("ENter the EXpression\n");
+ scanf("%s",exp);
+ infixToPostfix(exp);
+ return 0;
+}
+*******************************OUTPUT:-**********************************
+ENter the EXpression
+1+2
++12
+
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip15(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write menu driven program using ‘C’ for Dynamic implementation of 
+Stack. The menu includes following operations: - Push - Pop - Display - Exit
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct stack
+{
+int data;
+struct stack * next;
+};
+struct stack *top=NULL;
+struct stack *cn()
+{
+struct stack *n;
+n=(struct stack *)malloc(sizeof(struct stack));
+return (n);
+}
+void push()
+{
+struct stack *newnode;
+int x;
+printf("Enter element of stack :\n");
+scanf("%d",&x);
+if(top==NULL)
+{
+newnode=cn();
+newnode->data=x;
+newnode->next=NULL;
+top=newnode;
+ 
+}
+else
+{
+newnode=cn();
+newnode->data=x;
+newnode->next=top;
+top=newnode;
+ 
+}
+printf("Element pushed successfully.\n");
+}
+void pop()
+{
+int pop,flag=0,item;
+struct stack *temp;
+if(top==NULL)
+{
+printf("Stack is empty.\n");
+}
+else
+{
+temp=top;
+temp->data=item;
+top=top->next;
+free(temp);
+flag=1;
+}
+if(flag==1)
+{
+printf("Element popped successfully.\n");
+}
+}
+void display()
+{
+struct stack *temp;
+printf("\n");
+if(top==NULL)
+{
+printf("Stack is empty.\n");
+}
+else
+{
+temp=top;
+while(temp->next!=NULL)
+{
+printf("%d\n",temp->data);
+temp=temp->next;
+}
+printf("%d\n",temp->data); }}
+void main()
+{
+int choice;
+while(choice!=4)
+{
+printf("\n\n1. Push\n");
+printf("2. Pop\n");
+printf("3. Display\n");
+printf("4. Exit\n\n");
+scanf("%d",&choice);
+switch(choice)
+{
+case 1: push();
+break;
+case 2: pop();
+break;
+case 3: display();
+break;
+case 4: exit(0);
+break;
+default: printf("Enter a valid choice.\n");
+}}}
+*******************************OUTPUT:-**********************************
+Enter element of stack :
+1234567
+Element pushed successfully.
+1. Push
+2. Pop
+3. Display
+4. Exit
+2
+Element popped successfully.
+1. Push
+2. Pop
+3. Display
+4. Exit
+3
+Stack is empty.
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip16(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program which accept the string and reverse each word of the 
+string using Static implementation of stack. Example: Input
+- This is an input string Output
+- sihTsinatupnignirts
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int top=-1, i;
+char stack[50];char array1[50];char array2[50];
+void reverse();
+int main()
+{
+ printf("Enter string:\n");
+ fgets(array1,sizeof(array1),stdin);
+ for(i=0;array1[i]!='\0';i++)
+ {
+ top=top+1;
+ stack[top]=array1[i];
+ }
+ reverse();
+ printf("\n\nReversed String :\n");
+ puts(array2);
+}
+void reverse()
+{
+ for(i=0;top>0;i++)
+ {
+ top=top-1;
+ array2[i]=stack[top];
+ }
+}
+*******************************OUTPUT:-**********************************
+Enter string:
+the basic string
+Reversed String :
+gnirts cisab eht
+
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip16(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to create to a Singly linked list. Accept the number 
+from user, search the number in the list.If the number is present display the Position of node .If 
+number not present print the message “Number not Found”.
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node * next;
+};
+struct node* head=NULL;
+struct node *cn()
+{
+ struct node* n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createnode(int n) 
+{
+ int i,x;
+ struct node * temp,*newnode;
+ printf("Enter elements of linked list :\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(head==NULL) {
+ head=cn();
+ head->data=x;
+ head->next=NULL;
+ temp=head;
+ }
+ else
+ { 
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode; } }}
+void display() {
+ struct node * temp;
+ temp=head;
+ while(temp!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next;}}
+void search(int key) 
+{
+ struct node * temp;
+ int i=1,flag=0;
+ temp=head;
+ if(head==NULL)
+ {
+ printf("Linked list is empty. \n");
+ }
+ else 
+ {
+ while(temp!=NULL)
+ {
+ if(key==temp->data)
+ {
+ flag=1;
+ break;
+ }
+ temp=temp->next;
+ i++;
+}}
+ if(flag==0)
+ {
+ printf("Elemet not found.\n"); }
+ else
+ {
+ printf("Element found at position :%d",i);
+}}
+int main()
+{
+ int n,key;
+ printf("Enter size of Linked list :\n");
+ scanf("%d",&n);
+ createnode(n);
+ printf("\n\nLinked List :\n");
+ display();
+ printf("\nEnter element you want to search :\n");
+ scanf("%d",&key);
+ search(key);
+}
+*******************************OUTPUT:-**********************************
+Enter size of Linked list :
+5
+Enter elements of linked list :
+2
+34
+56
+11
+66
+Linked List :
+2
+34
+56
+11
+66
+Enter element you want to search :
+66
+Element found at position :5
+
+
+
+
+
+
+
+
+***************************************************************************
+*********************************slip17(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program to read a postfix expression, evaluate it and display 
+the result. (Use Static Implementation of Stack).
+***************************************************************************
+#include<stdio.h>
+#include<ctype.h>
+int stack[20];
+int top = -1;
+void push(int x)
+{
+ stack[++top] = x;
+}
+int pop()
+{
+ return stack[top--];
+}
+int main()
+{
+ char exp[20];
+ char *e;
+ int n1,n2,n3,num;
+ printf("Enter the expression : ");
+ scanf("%s",exp);
+ e = exp;
+ while(*e != '\0')
+ {
+ if(isdigit(*e))
+ {
+ num = *e - 48;
+ push(num);
+ }
+ else
+ {
+ n1 = pop();
+ n2 = pop();
+ switch(*e)
+ {
+ case '+':
+ {
+ n3 = n1 + n2;
+ break;
+ }
+ case '-':
+ {
+ n3 = n2 - n1;
+ break;
+ }
+ case '*':
+ {
+ n3 = n1 * n2;
+ break;
+ }
+ case '/':
+ {
+ n3 = n2 / n1;
+ break;
+ }
+ }
+ push(n3);
+ }
+ e++;
+ }
+ printf("\nThe result of expression %s = %d\n\n",exp,pop());
+ return 0;
+}
+*******************************OUTPUT:-**********************************
+Enter the expression : A+C+D+2+3+4
+The result of expression A+C+D+2+3+4 = 4
+***************************************************************************
+
+
+
+
+
+
+
+*********************************slip17(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to accept the names of cities and store them in array. 
+Accept the city name from user and use linear search algorithm to check whether the city is present 
+in array or not.
+***************************************************************************
+#include<stdio.h>
+#include<string.h>
+typedef struct city
+{
+ char name[30];
+ int code;
+}record;
+record city[100];
+int read_file(record *a)
+{
+ int i=0;
+ FILE *fp;
+ if((fp=fopen("sortedcities.txt","r"))!=NULL)
+ while(!feof(fp))
+{
+ fscanf(fp,"%s%d",a[i].name,&a[i].code);
+ i++;
+ }
+ return (i-1);
+}
+void write_file(record *a,int n)
+{
+ int i=0;
+ FILE *fp;
+ if((fp=fopen("sorted_cities.txt","w"))!=NULL)
+ for(i=0;i<n;i++)
+ fprintf(fp,"\n%s\t%d",a[i].name,a[i].code);
+}
+void sort(record *a,int n)
+{
+ int i,j;
+ record t;
+ for(i=1;i<n;i++)
+ {
+ for(j=0;j<n-i;j++)
+ {
+ if(strcmp(a[j].name,a[j+1].name)>0)
+ {
+ t=a[j];
+ a[j]=a[j+1];
+ a[j+1]=t;
+ }
+ }
+ }
+}
+int read_file1(record *a)
+{
+ int i=0;
+ FILE *fp;
+ if((fp=fopen("sorted_cities.txt","r"))!=NULL)
+ while(!feof(fp))
+ {
+ fscanf(fp,"%s%d",a[i].name,&a[i].code);
+ i++;
+ }
+ return (i-1);
+}
+void b_search(record *a,int n,char key[20])
+{
+ int l,h,mid;
+ l=0;
+ h=n-1;
+ while(h>=l)
+ {
+ mid=(l+h)/2;
+ if(strcmp(key,a[mid].name)==0)
+ {
+ printf("\nSTD code:%d\n ",a[mid].code);
+ break;
+ }
+ else if(strcmp(key,a[mid].name)<0)
+ h=mid-1;
+ else
+ l=mid+1;
+ }
+ if(h<l)
+ printf("\ncity not in list\n");
+}
+main()
+{
+ char key[20];
+ int n,m;
+ n=read_file(city);
+ sort(city,n);
+ write_file(city,n);
+ printf("\nenter city name\n");
+ scanf("%s",key);
+ b_search(city,n,key);
+}
+*******************************OUTPUT:-**********************************
+enter city name
+PHALTAN
+city not in list
+
+
+
+
+
+***************************************************************************
+*********************************slip18(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program to read ‘n’ integers and store them in a binary Search 
+tree structure and count the following and display it
+. - Number of nodes
+- Degree of tree
+- Leaf nodes
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct binary_tree
+{
+ int info;
+ struct binary_tree *left;
+ struct binary_tree *right;
+};
+typedef struct binary_tree NODE;
+NODE *node=NULL;
+NODE *newnode(int data)
+{
+ NODE *temp;
+ temp= (NODE*)malloc(sizeof(NODE));
+ temp->info = data;
+ temp->left = NULL;temp->right = NULL;
+ return temp;
+}
+NODE *insertLevelOrder(int arr[],NODE *root,int i,int n)
+{
+ if(i<n)
+ {
+ NODE *temp=newnode(arr[i]);
+ root=temp;
+ root->left=insertLevelOrder(arr,root->left,(2*i)+1,n);
+ root->right=insertLevelOrder(arr,root->right,(2*i)+2,n);
+ }
+ return root;
+}
+unsigned int count(NODE *node)
+{
+ if(node==NULL)
+ {
+ return 0;
+ }
+ else
+ {
+ return 1+count(node->left)+count(node->right);
+ }
+}
+unsigned int getLeafCount(NODE *node) 
+{ 
+ if(node == NULL) 
+ return 0; 
+ if(node->left == NULL && node->right==NULL) 
+ return 1;
+ else 
+ return getLeafCount(node->left)+ 
+ getLeafCount(node->right); 
+}
+int degree(NODE *node)
+{
+ if(node==NULL)
+ {
+ printf("Tree is empty\n");
+ }
+ else if(node->left==NULL && node->right==NULL)
+ {
+ return 0;
+ }
+ else if(node->left && node->right)
+ {
+ return 2;
+ }
+ else if(node->left || node->right)
+ {
+ return 1;
+ }
+ 
+}
+int main()
+{
+ int data,ch,i,n,arr[50],count1,count2,count3;
+ NODE *root=NULL;
+ while (ch!=5)
+ {
+ printf("\n\n1.Insertion in Binary Search Tree");
+ printf("\n2.Total number of nodes");
+ printf("\n3.Degree of tree");
+ printf("\n4.Leaf nodes");
+ printf("\n5.Exit");
+ printf("\nEnter your Choice: \n");
+ scanf("%d", &ch);
+ switch (ch)
+ {
+ case 1: printf("\nEnter size of tree: " );
+ scanf("%d", &n);
+ printf("\nEnter the Values to Create Binary tree\n");
+ for(i=0; i<n; i++)
+ {
+ scanf("%d",&arr[i]); 
+ }
+ root=insertLevelOrder(arr,root,0,n);
+ break;
+ case 2: count1=count(root);
+ printf("Number of nodes :%d\n",count1);
+ break;
+ case 3: count2=degree(root);
+ printf("Degree of tree :%d\n",count2);
+ break; 
+ 
+ case 4: count3=getLeafCount(root);
+ printf("Number of Leaf nodes :%d\n",count3);
+ break;
+ case 5: exit(0);
+ default: printf("\nSelect a valid option\n");
+ break;
+ }}}
+*******************************OUTPUT:-**********************************
+1.Insertion in Binary Search Tree
+2.Total number of nodes
+3.Degree of tree
+4.Leaf nodes
+5.Exit
+Enter your Choice:
+1
+Enter size of tree: 4
+Enter the Values to Create Binary tree
+1234
+12
+13
+12
+1.Insertion in Binary Search Tree
+2.Total number of nodes
+3.Degree of tree
+4.Leaf nodes
+5.Exit
+Enter your Choice:
+2
+Number of nodes :4
+1.Insertion in Binary Search Tree
+2.Total number of nodes
+3.Degree of tree
+4.Leaf nodes
+5.Exit
+Enter your Choice:
+3
+Degree of tree :2
+1.Insertion in Binary Search Tree
+2.Total number of nodes
+3.Degree of tree
+4.Leaf nodes
+5.Exit
+Enter your Choice:
+4
+Number of Leaf nodes :2
+
+
+
+
+
+
+***************************************************************************
+*********************************slip18(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to accept and sort n elements in ascending order 
+using Merge sort method.
+***************************************************************************
+#include<stdio.h>
+void mergeSort(int [],int,int,int);
+void partition(int [],int,int);
+int main()
+{
+ int A[50],n,i;
+ printf("Enter size of Array :\n");
+ scanf("%d",&n);
+ printf("Enter elements of array :\n");
+ for(i=0;i<n;i++)
+ {
+ scanf("%d",&A[i]);
+ }
+ partition(A,0,n-1);
+ printf("Sorted Array :\n");
+ for(i=0;i<n;i++)
+ {
+ printf("%d\n",A[i]);
+ }
+}
+void partition(int A[],int low,int high)
+{
+ int mid;
+ if(low<high)
+ {
+ mid=(low+high)/2;
+ partition(A,low,mid);
+ partition(A,mid+1,high);
+ mergeSort(A,low,mid,high);
+ }
+}
+void mergeSort(int A[],int low,int mid,int high)
+{
+ int i,m,k,l,temp[50];
+ l=i=low;
+ m=mid+1;
+ while((l<=mid)&&(m<=high))
+ {
+ if(A[l]<=A[m])
+ {
+ temp[i]=A[l];
+ l++;
+ }
+ else
+ {
+ temp[i]=A[m];
+ m++;
+ }
+ i++;
+ }
+ while(l<=mid)
+ {
+ temp[i]=A[l];
+ l++;
+ i++;
+ }
+ while(m<=high)
+ {
+ temp[i]=A[m];
+ i++;
+ m++;
+ }
+ 
+ for(k=low;k<=high;k++)
+ {
+ A[k]=temp[k];
+ }
+}
+*******************************OUTPUT:-**********************************
+Enter size of Array :
+5
+Enter elements of array :
+4
+8
+0
+5
+3
+Sorted Array :
+0
+3
+4
+5
+8
+
+
+
+
+
+
+***************************************************************************
+*********************************slip19(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program which accept the string and reverse each word of the 
+string using Dynamic implementation of stack. Example: Input - This is an input string Output -
+sihTsinatupnignirts
+***************************************************************************
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int top=-1, i;
+char stack[50];char array1[50];char array2[50];
+void reverse();
+int main()
+{
+ printf("Enter string:\n");
+ fgets(array1,sizeof(array1),stdin);
+ for(i=0;array1[i]!='\0';i++)
+ {
+ top=top+1;
+ stack[top]=array1[i];
+ }
+ reverse();
+ printf("\n\nReversed String :\n");
+ puts(array2);
+}
+void reverse()
+{
+ for(i=0;top>0;i++)
+ {
+ top=top-1;
+ array2[i]=stack[top];
+ }
+}
+*******************************OUTPUT:-**********************************
+Enter string:
+fybbaca
+Reversed String :
+acabbyf
+***************************************************************************
+*********************************slip19(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to create a singly Link list and display its alternative 
+nodes. (start displaying from first node)
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+ int data;
+ struct node * next;
+};
+struct node* head=NULL;
+struct node *cn()
+{
+ struct node* n;
+ n=(struct node *)malloc(sizeof(struct node));
+ return(n);
+}
+void createnode() //Function to create Linked list.
+{
+ int i,n,x;
+ struct node * temp,*newnode;
+ printf("Enter size of linked list :\n");
+ scanf("%d",&n);
+ printf("Enter elements of linked list :\n");
+ for(i=1;i<=n;i++)
+ {
+ scanf("%d",&x);
+ if(head==NULL) //checking in linked list is empty
+ {
+ head=cn();
+ head->data=x;
+ head->next=NULL;
+ temp=head;
+ }
+ else
+ { 
+ newnode=cn();
+ newnode->data=x;
+ newnode->next=NULL;
+ temp->next=newnode;
+ temp=newnode;
+ }}
+}
+void display()
+{
+ struct node * temp;
+ temp=head;
+ if(head==NULL)
+ {
+ printf("List is empty\n");
+ }
+ else
+ {
+ while(temp->next!=NULL || temp!=NULL)
+ {
+ printf("%d\n",temp->data);
+ temp=temp->next->next;}}
+}
+int main()
+{
+ createnode();
+ printf("Displaying alternative nodes.\n");
+ display();
+}
+*******************************OUTPUT:-**********************************
+Enter size of linked list :
+6
+Enter elements of linked list :
+12
+13
+14
+15
+16
+17
+Displaying alternative nodes.
+12
+14
+16
+
+
+
+
+***************************************************************************
+*********************************slip20(A)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: A) Write a ‘C’ program which accept the string and check whether the string 
+is Palindrome or not using stack. (Use Static/Dynamic implementation of Stack)
+***************************************************************************
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 50
+int top = -1, front = 0;
+int stack[MAX];
+void push(char);
+void pop();
+/* push a character into stack */
+void push(char a)
+{
+ top++;
+ stack[top] = a;
+}
+/* delete an element in stack */
+void pop()
+{
+ top--;
+}
+int main()
+{
+ int i, cho;
+ char s[MAX], b;
+ printf("\nEnter string : ");
+ scanf("%s", s);
+ for (i = 0;s[i] != '\0';i++)
+ {
+ b = s[i];
+ push(b);
+ }
+ for (i = 0;i < (strlen(s) / 2);i++)
+ {
+ if (stack[top] == stack[front])
+ {
+ pop();
+ front++;
+ }
+ else
+ {
+ printf("'%s' is not palindrome.\n\n", s);
+ 
+ }
+ }
+ if ((strlen(s) / 2)== front)
+ {
+ printf("'%s' is palindrome.\n\n", s);
+ front = 0;
+ top = -1;
+ }
+ return 0;
+}
+*******************************OUTPUT:-**********************************
+Enter string : fybbaca
+'fybbaca' is not palindrome.
+'fybbaca' is not palindrome.
+'fybbaca' is not palindrome.
+
+
+
+
+***************************************************************************
+*********************************slip20(B)**********************************
+ NAME:- SHINDE SAHIL VILAS ROLL NO:- 6107 CLASS NAME:- SYBBA(CA)
+ SUBJECT NAME:- DATA STRUCTURE
+ PROGRAM NAME: B) Write a ‘C’ program to swap mth and nth element of singly linked list.
+***************************************************************************
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+struct list
+{
+ int data;
+ struct list *link;
+}*start=NULL;
+void creat(int);
+void swap();
+void disp();
+int main()
+{
+ int ch,i,n,m;
+ do
+ {
+ printf("\n\n1.Create Linked list");
+ printf("\n2.Display");
+ printf("\n3.Swap");
+ printf("\n4.Exit\n");
+ printf("\nEnter your choice :\n");
+ scanf("%d",&ch);
+ switch(ch)
+ {
+ case 1:
+ printf("\nEnter number of nodes :\n");
+ scanf("%d",&n);
+ printf("\nEnter elements of Linked list:\n");
+ for(i=0;i<n;i++)
+ {
+ scanf("%d",&m);
+ creat(m);
+ }
+ break;
+ case 2:
+ disp();
+ break;
+ case 3:
+ swap();
+ break;
+ case 4:
+ exit(0);
+ }
+ }while(ch!=4);
+ return 0;
+}
+void creat(int m)
+{
+ struct list *tmp,*q;
+ tmp=(struct list *)malloc(sizeof(struct list));
+ tmp->data=m;
+ tmp->link=NULL;
+ if(start==NULL)
+ {
+ start=tmp;
+ }
+ else
+ {
+ q=start;
+ while(q->link!=NULL)
+ {
+ q=q->link;
+ }
+ q->link=tmp;
+ }
+}
+void disp()
+{
+ struct list *q;
+ if(start==NULL)
+ {
+ printf("list is empty");
+ }
+ else
+ {
+ q=start;
+ printf("\n");
+ while(q!=NULL)
+ {
+ printf("%d\n",q->data);
+ q=q->link;
+ }
+ }
+}
+void swap()
+{
+ int m,n,i,tmp;
+ struct list *q,*ptr,*ptr1;
+ printf("\nEnter the mth and nth position:\n");
+ scanf("%d%d",&m,&n);
+ for(i=1,ptr=start;i<m && ptr!=NULL;ptr=ptr->link,i++);
+ for(i=1,ptr1=start;i<n && ptr1!=NULL;ptr1=ptr1->link,i++);
+ if(ptr!=NULL && ptr1!=NULL)
+ {
+ tmp=ptr->data;
+ ptr->data=ptr1->data;
+ ptr1->data=tmp;
+ }
+ else
+ {
+ printf("\nPosition Not Found");
+ }
+}
+*******************************OUTPUT:-**********************************
+1.Create Linked list
+2.Display
+3.Swap
+4.Exit
+Enter your choice :
+1
+Enter number of nodes :
+5
+Enter elements of Linked list:
+12
+11
+13
+14
+15
+1.Create Linked list
+2.Display
+3.Swap
+4.Exit
+Enter your choice :
+3
+Enter the mth and nth position:
+3
+5
+1.Create Linked list
+2.Display
+3.Swap
+4.Exit
+***************************************************************************
